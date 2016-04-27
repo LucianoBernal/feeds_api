@@ -1,0 +1,111 @@
+conversation_repository:
+  type: memory
+  max_conversations: 1000
+  max_messages: 1000
+
+#conversation_repository:
+#  type: elasticsearch
+#  cluster_name: crackme
+#  hosts:
+#   - localhost:9300
+#  max_messages: 100
+#  counter_dao:
+#    type: memory
+##  counter_dao:
+##    type: redis
+##    servers: localhost:6379:0:1
+##    staticServer: localhost:6379:0:1
+##    password: luna1234
+
+
+migration:
+  type: disabled
+
+#migration:
+#  type: redis
+#  servers: ardb0.etermax.net:6300:0:1,ardb1.etermax.net:6301:1:1,ardb2.etermax.net:6302:2:1,ardb3.etermax.net:6303:3:1,ardb4.etermax.net:6304:4:1,ardb5.etermax.net:6305:5:1,ardb6.etermax.net:6306:6:1,ardb7.etermax.net:6307:7:1,ardb8.etermax.net:6308:8:1,ardb9.etermax.net:6309:9:1,ardb10.etermax.net:6310:10:1,ardb11.etermax.net:6311:11:1,ardb12.etermax.net:6312:12:1,ardb13.etermax.net:6313:13:1,ardb14.etermax.net:6314:14:1,ardb15.etermax.net:6315:15:1
+#  staticServer: ardb-static.etermax.net:5300
+#  password: NTZmODA3MDdlMzgzYTM3ZTgzZDI5OGVm
+#  daysThreshold: 90
+
+#migration:
+#  type: redis
+#  servers: localhost:6379:0:1
+#  staticServer: localhost:6379:0:1
+#  password: luna1234
+#  daysThreshold: 90
+
+#notifications:
+#  type: disabled
+
+notifications:
+  type: hermes
+  redis_servers: apalabrados.dev.etermax.com:6380:0:1
+  static_server: apalabrados.dev.etermax.com:6380
+  password: luna1234
+  users_api_url: http://localhost:9000
+  hermes_inbox_url: kernel.dev.etermax.com:8090
+
+#notifications:
+#  type: api
+#  url: http://localhost:8082
+
+users_api_url: http://playchat.dev.etermax.com:9002
+
+metricsReporter:
+  type: disabled
+
+#metricsReporter:
+#  type: graphite
+#  host: nms.apalabrados.com
+#  port: 2003
+#  prefix: crackme.conversations.counter
+#  cronExpression: 0 0 0 1/1 * ? *
+#  consoleMode: false
+
+logging:
+  level: INFO
+  loggers:
+      "com.etermax.jvon.deserializers.ObjectDeserializer": ERROR
+  appenders:
+    - type: console
+      threshold: ALL
+      timeZone: UTC
+      target: stdout
+
+#logging:
+#  level: INFO
+#  appenders:
+#    - type: file
+#      threshold: INFO
+#      logFormat: "%-5level [%date{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] - %msg%n"
+#      currentLogFilename: ./logs/application.log
+#      archivedLogFilenamePattern: ./logs/application-%i.log.gz
+#      archivedFileCount: 5
+#      maxFileSize: 100MB
+#      timeZone: GMT-3
+#    - type: console
+#      threshold: OFF # No logueamos nada en la consola
+#      timeZone: GMT-3
+#  loggers:
+#      "com.etermax.conversations.notification.service":
+#            level: DEBUG
+#            appenders:
+#             - type: file
+#               logFormat: "%-5level [%date{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [INBOX] - %msg%n"
+#               currentLogFilename: ./logs/notifications.log
+#               archivedLogFilenamePattern: ./logs/notifications-%i.log.gz
+#               archivedFileCount: 2
+#               maxFileSize: 20MB
+#               threshold: ALL
+
+retrocompatibility_message_service:
+  type: XMPP
+  registered_servers:
+    - application: ANGRY_WORDS
+      xmpp_server_name: localhost
+      xmpp_server_port: 5285
+    - application: CRACK_ME
+      xmpp_server_name: localhost
+      xmpp_server_port: 5285
+# type: disabled

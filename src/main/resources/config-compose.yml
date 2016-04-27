@@ -1,0 +1,25 @@
+conversation_repository:
+  type: elasticsearch
+  cluster_name: elasticsearch
+  hosts:
+   - elastic:9300
+  max_messages: 100
+  counter_dao:
+    type: redis
+    servers: redis:6379:0:1
+    staticServer: redis:6379
+    password: luna1234
+
+users_api_url: http://users:8080
+
+migration:
+  type: disabled
+
+notifications:
+  type: disabled
+
+metricsReporter:
+  type: disabled
+
+retrocompatibility_message_service:
+  type: disabled

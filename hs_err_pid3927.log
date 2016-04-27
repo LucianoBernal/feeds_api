@@ -1,0 +1,681 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007ffaf4000188, pid=3927, tid=140716561614592
+#
+# JRE version: Java(TM) SE Runtime Environment (8.0_45-b14) (build 1.8.0_45-b14)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.45-b02 mixed mode linux-amd64 compressed oops)
+# Problematic frame:
+# C  0x00007ffaf4000188
+#
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007ffb380ce000):  JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=3938, stack(0x00007ffb209b4000,0x00007ffb20ab5000)]
+
+siginfo: si_signo: 11 (SIGSEGV), si_code: 2 (SEGV_ACCERR), si_addr: 0x00007ffaf4000188
+
+Registers:
+RAX=0x00007ffaf4000188, RBX=0x00007ffaf4000198, RCX=0x00007ffb3e2e5320, RDX=0x00007ffb3d8c2ca0
+RSP=0x00007ffb20ab3688, RBP=0x00007ffb20ab36a0, RSI=0x00007ffb380ce000, RDI=0x00007ffaf4000198
+R8 =0x00007ffb380c7160, R9 =0x0000000000000000, R10=0x0000000000000001, R11=0x00007ffb3da74a30
+R12=0x0000000000000017, R13=0x00007ffaf40001a8, R14=0x00007ffb380ce000, R15=0x00007ffb20ab37a7
+RIP=0x00007ffaf4000188, EFLAGS=0x0000000000010202, CSGSFS=0x0000000000000033, ERR=0x0000000000000015
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007ffb20ab3688)
+0x00007ffb20ab3688:   00007ffb3d1be447 0000000000000074
+0x00007ffb20ab3698:   00007ffb38009680 00007ffb20ab3710
+0x00007ffb20ab36a8:   00007ffb3d04ff9e 00007ffb38009680
+0x00007ffb20ab36b8:   00007ffb20ab36c0 00007ffb380ce000
+0x00007ffb20ab36c8:   0000000000000000 00007ffb00000000
+0x00007ffb20ab36d8:   0000000000000000 00007ffb20ab36f0
+0x00007ffb20ab36e8:   00007ffb37dd3e40 00007ffaf40001a8
+0x00007ffb20ab36f8:   00007ffb20ab37a7 0000000000000000
+0x00007ffb20ab3708:   00007ffb20ab37a7 00007ffb20ab3740
+0x00007ffb20ab3718:   00007ffb37bbf8c2 00007ffb20ab3740
+0x00007ffb20ab3728:   00007ffaf40001a8 00007ffb20ab3810
+0x00007ffb20ab3738:   0000000000000000 00007ffb20ab37d0
+0x00007ffb20ab3748:   00007ffb37ba0aa0 00007ffb20ab3788
+0x00007ffb20ab3758:   00007ffb20ab3780 00007ffb20ab3778
+0x00007ffb20ab3768:   00007ffb20ab379c 00000001f4016e60
+0x00007ffb20ab3778:   0000000000000000 0000000000000000
+0x00007ffb20ab3788:   0000000000000000 00007ffaf4014140
+0x00007ffb20ab3798:   00007ffb20ab3810 0000000000000016
+0x00007ffb20ab37a8:   0000000000000002 000000000000000f
+0x00007ffb20ab37b8:   0000000000000002 00000000000f0200
+0x00007ffb20ab37c8:   000000000000000f 00007ffb20ab3a20
+0x00007ffb20ab37d8:   00007ffb37bab9c6 00000e9000000013
+0x00007ffb20ab37e8:   00007ffb3d0f0200 00007ffaec000fd0
+0x00007ffb20ab37f8:   0000000000000000 00007ffb20ab3810
+0x00007ffb20ab3808:   00007ffb20ab39a0 00007ffb20ab3864
+0x00007ffb20ab3818:   00007ffb00000128 00007ffb20ab3828
+0x00007ffb20ab3828:   0000000000000004 00007ffb20ab3860
+0x00007ffb20ab3838:   0000000000000000 00007f0000000000
+0x00007ffb20ab3848:   00000e900000000f 00007ffb00003980
+0x00007ffb20ab3858:   00007ffb20ab3860 0400000016000000
+0x00007ffb20ab3868:   000000010000a985 7f00009903000000
+0x00007ffb20ab3878:   000000906200f4fa 4305005600000000 
+
+Instructions: (pc=0x00007ffaf4000188)
+0x00007ffaf4000168:   58 01 00 f4 fa 7f 00 00 58 01 00 f4 fa 7f 00 00
+0x00007ffaf4000178:   68 01 00 f4 fa 7f 00 00 68 01 00 f4 fa 7f 00 00
+0x00007ffaf4000188:   78 01 00 f4 fa 7f 00 00 78 01 00 f4 fa 7f 00 00
+0x00007ffaf4000198:   88 01 00 f4 fa 7f 00 00 88 01 00 f4 fa 7f 00 00 
+
+Register to memory mapping:
+
+RAX=0x00007ffaf4000188 is an unknown value
+RBX=0x00007ffaf4000198 is an unknown value
+RCX=0x00007ffb3e2e5320: <offset 0x219320> in /lib/x86_64-linux-gnu/libpthread.so.0 at 0x00007ffb3e0cc000
+RDX=0x00007ffb3d8c2ca0: <offset 0xf9dca0> in /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so at 0x00007ffb3c925000
+RSP=0x00007ffb20ab3688 is pointing into the stack for thread: 0x00007ffb380ce000
+RBP=0x00007ffb20ab36a0 is pointing into the stack for thread: 0x00007ffb380ce000
+RSI=0x00007ffb380ce000 is a thread
+RDI=0x00007ffaf4000198 is an unknown value
+R8 =0x00007ffb380c7160 is an unknown value
+R9 =0x0000000000000000 is an unknown value
+R10=0x0000000000000001 is an unknown value
+R11=0x00007ffb3da74a30: <offset 0x187a30> in /lib/x86_64-linux-gnu/libc.so.6 at 0x00007ffb3d8ed000
+R12=0x0000000000000017 is an unknown value
+R13=0x00007ffaf40001a8 is an unknown value
+R14=0x00007ffb380ce000 is a thread
+R15=0x00007ffb20ab37a7 is pointing into the stack for thread: 0x00007ffb380ce000
+
+
+Stack: [0x00007ffb209b4000,0x00007ffb20ab5000],  sp=0x00007ffb20ab3688,  free space=1021k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  0x00007ffaf4000188
+V  [libjvm.so+0x72af9e]  jvmti_IsMethodSynthetic+0x2be
+C  [libjdwp.so+0x258c2]  isMethodSynthetic+0x42
+C  [libjdwp.so+0x6aa0]  methods1+0x1b0
+C  [libjdwp.so+0x119c6]  debugLoop_run+0x2b6
+C  [libjdwp.so+0x247ff]  attachThread+0x2f
+V  [libjvm.so+0x797102]  JvmtiAgentThread::call_start_function()+0xc2
+V  [libjvm.so+0xa5c86f]  JavaThread::thread_main_inner()+0xdf
+V  [libjvm.so+0xa5c99c]  JavaThread::run()+0x11c
+V  [libjvm.so+0x910de8]  java_start(Thread*)+0x108
+C  [libpthread.so.0+0x8182]  start_thread+0xc2
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007ffb380de800 JavaThread "Service Thread" daemon [_thread_blocked, id=3948, stack(0x00007ffb203ae000,0x00007ffb204af000)]
+  0x00007ffb380d8800 JavaThread "C1 CompilerThread2" daemon [_thread_blocked, id=3947, stack(0x00007ffb204af000,0x00007ffb205b0000)]
+  0x00007ffb380d6800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=3946, stack(0x00007ffb205b0000,0x00007ffb206b1000)]
+  0x00007ffb380d4000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=3945, stack(0x00007ffb206b1000,0x00007ffb207b2000)]
+  0x00007ffaf4001000 JavaThread "JDWP Command Reader" daemon [_thread_in_native, id=3940, stack(0x00007ffb207b2000,0x00007ffb208b3000)]
+  0x00007ffb380d1800 JavaThread "JDWP Event Helper Thread" daemon [_thread_blocked, id=3939, stack(0x00007ffb208b3000,0x00007ffb209b4000)]
+=>0x00007ffb380ce000 JavaThread "JDWP Transport Listener: dt_socket" daemon [_thread_in_vm, id=3938, stack(0x00007ffb209b4000,0x00007ffb20ab5000)]
+  0x00007ffb380bf000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=3937, stack(0x00007ffb20cb9000,0x00007ffb20dba000)]
+  0x00007ffb38088000 JavaThread "Finalizer" daemon [_thread_blocked, id=3936, stack(0x00007ffb20dba000,0x00007ffb20ebb000)]
+  0x00007ffb38086000 JavaThread "Reference Handler" daemon [_thread_blocked, id=3935, stack(0x00007ffb20ebb000,0x00007ffb20fbc000)]
+  0x00007ffb38013000 JavaThread "main" [_thread_blocked, id=3929, stack(0x00007ffb3e3ed000,0x00007ffb3e4ee000)]
+
+Other Threads:
+  0x00007ffb38081000 VMThread [stack: 0x00007ffb20fbc000,0x00007ffb210bd000] [id=3934]
+  0x00007ffb380e1000 WatcherThread [stack: 0x00007ffb202ad000,0x00007ffb203ae000] [id=3949]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 36864K, used 29220K [0x00000000d7100000, 0x00000000d9a00000, 0x0000000100000000)
+  eden space 31744K, 92% used [0x00000000d7100000,0x00000000d8d892a8,0x00000000d9000000)
+  from space 5120K, 0% used [0x00000000d9500000,0x00000000d9500000,0x00000000d9a00000)
+  to   space 5120K, 0% used [0x00000000d9000000,0x00000000d9000000,0x00000000d9500000)
+ ParOldGen       total 84992K, used 0K [0x0000000085200000, 0x000000008a500000, 0x00000000d7100000)
+  object space 84992K, 0% used [0x0000000085200000,0x0000000085200000,0x000000008a500000)
+ Metaspace       used 7157K, capacity 7348K, committed 7680K, reserved 1056768K
+  class space    used 851K, capacity 912K, committed 1024K, reserved 1048576K
+
+Card table byte_map: [0x00007ffb272c9000,0x00007ffb276a1000] byte_map_base: 0x00007ffb26ea0000
+
+Marking Bits: (ParMarkBitMap*) 0x00007ffb3d8c2760
+ Begin Bits: [0x00007ffb22ec5000, 0x00007ffb24d7d000)
+ End Bits:   [0x00007ffb24d7d000, 0x00007ffb26c35000)
+
+Polling page: 0x00007ffb3e509000
+
+CodeCache: size=245760Kb used=3023Kb max_used=3038Kb free=242736Kb
+ bounds [0x00007ffb27a61000, 0x00007ffb27d61000, 0x00007ffb36a61000]
+ total_blobs=996 nmethods=715 adapters=203
+ compilation: enabled
+
+Compilation events (10 events):
+Event: 2,062 Thread 0x00007ffb380d8800  711       3       sun.util.calendar.AbstractCalendar::getCalendarDate (217 bytes)
+Event: 2,063 Thread 0x00007ffb380d8800 nmethod 711 0x00007ffb27d46e90 code [0x00007ffb27d470c0, 0x00007ffb27d48078]
+Event: 2,063 Thread 0x00007ffb380d8800  710       3       sun.util.calendar.AbstractCalendar::getTimeOfDayValue (50 bytes)
+Event: 2,063 Thread 0x00007ffb380d8800 nmethod 710 0x00007ffb27d46850 code [0x00007ffb27d469c0, 0x00007ffb27d46db0]
+Event: 2,065 Thread 0x00007ffb380d6800  712 %     4       sun.misc.URLClassPath::getResource @ 46 (83 bytes)
+Event: 2,078 Thread 0x00007ffb380d8800  713       3       java.util.ArrayList::iterator (10 bytes)
+Event: 2,079 Thread 0x00007ffb380d8800 nmethod 713 0x00007ffb27d46290 code [0x00007ffb27d46400, 0x00007ffb27d466f0]
+Event: 2,089 Thread 0x00007ffb380d6800 nmethod 712% 0x00007ffb27d57390 code [0x00007ffb27d57660, 0x00007ffb27d58cd8]
+Event: 21,107 Thread 0x00007ffb380d8800  715       1       java.lang.reflect.Field::getName (5 bytes)
+Event: 21,107 Thread 0x00007ffb380d8800 nmethod 715 0x00007ffb27d45c50 code [0x00007ffb27d45da0, 0x00007ffb27d45eb0]
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (2 events):
+Event: 0,414 Thread 0x00007ffb38013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007ffb27b6b524 method=java.lang.String.hashCode()I @ 14
+Event: 0,572 Thread 0x00007ffb38013000 Uncommon trap: reason=unstable_if action=reinterpret pc=0x00007ffb27b8ad20 method=java.lang.String.indexOf(II)I @ 49
+
+Internal exceptions (10 events):
+Event: 0,573 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768bbe8) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 0,573 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768bda0) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 0,574 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768cc28) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 0,574 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768cde0) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 0,574 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768dba0) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 0,574 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768dd58) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 0,574 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768eb18) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 0,574 Thread 0x00007ffb38013000 Exception <a 'java/security/PrivilegedActionException'> (0x00000000d768ecd0) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/jvm.cpp, line 1382]
+Event: 1,282 Thread 0x00007ffb38013000 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000d8b41a10) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/methodHandles.cpp, line 1125]
+Event: 1,291 Thread 0x00007ffb38013000 Exception <a 'java/lang/NoSuchFieldError': method resolution failed> (0x00000000d8b50340) thrown at [/RE-WORK/workspace/8-2-build-linux-amd64/jdk8u45/3457/hotspot/src/share/vm/prims/methodHandles.cpp, line 1125]
+
+Events (10 events):
+Event: 1982,847 Executing VM operation: ChangeBreakpoints
+Event: 1982,847 Executing VM operation: ChangeBreakpoints done
+Event: 1982,856 Executing VM operation: ChangeBreakpoints
+Event: 1982,856 Executing VM operation: ChangeBreakpoints done
+Event: 1982,856 Executing VM operation: ChangeBreakpoints
+Event: 1982,856 Executing VM operation: ChangeBreakpoints done
+Event: 1982,863 Executing VM operation: RedefineClasses
+Event: 1982,866 Executing VM operation: RedefineClasses done
+Event: 1982,874 Executing VM operation: GetOrSetLocal
+Event: 1982,875 Executing VM operation: GetOrSetLocal done
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:01 3032533                            /usr/lib/jvm/java-8-oracle/bin/java
+00600000-00601000 rw-p 00000000 08:01 3032533                            /usr/lib/jvm/java-8-oracle/bin/java
+01daf000-01dd0000 rw-p 00000000 00:00 0                                  [heap]
+85200000-8a500000 rw-p 00000000 00:00 0 
+8a500000-d7100000 ---p 00000000 00:00 0 
+d7100000-d9a00000 rw-p 00000000 00:00 0 
+d9a00000-100000000 ---p 00000000 00:00 0 
+100000000-100100000 rw-p 00000000 00:00 0 
+100100000-140000000 ---p 00000000 00:00 0 
+7ffadc000000-7ffadc021000 rw-p 00000000 00:00 0 
+7ffadc021000-7ffae0000000 ---p 00000000 00:00 0 
+7ffae0000000-7ffae0021000 rw-p 00000000 00:00 0 
+7ffae0021000-7ffae4000000 ---p 00000000 00:00 0 
+7ffae4000000-7ffae4233000 rw-p 00000000 00:00 0 
+7ffae4233000-7ffae8000000 ---p 00000000 00:00 0 
+7ffae8000000-7ffae8475000 rw-p 00000000 00:00 0 
+7ffae8475000-7ffaec000000 ---p 00000000 00:00 0 
+7ffaec000000-7ffaec021000 rw-p 00000000 00:00 0 
+7ffaec021000-7ffaf0000000 ---p 00000000 00:00 0 
+7ffaf0000000-7ffaf01f0000 rw-p 00000000 00:00 0 
+7ffaf01f0000-7ffaf4000000 ---p 00000000 00:00 0 
+7ffaf4000000-7ffaf42b4000 rw-p 00000000 00:00 0 
+7ffaf42b4000-7ffaf8000000 ---p 00000000 00:00 0 
+7ffaf8000000-7ffaf8032000 rw-p 00000000 00:00 0 
+7ffaf8032000-7ffafc000000 ---p 00000000 00:00 0 
+7ffafc000000-7ffafc021000 rw-p 00000000 00:00 0 
+7ffafc021000-7ffb00000000 ---p 00000000 00:00 0 
+7ffb00000000-7ffb00021000 rw-p 00000000 00:00 0 
+7ffb00021000-7ffb04000000 ---p 00000000 00:00 0 
+7ffb04000000-7ffb04021000 rw-p 00000000 00:00 0 
+7ffb04021000-7ffb08000000 ---p 00000000 00:00 0 
+7ffb08000000-7ffb08021000 rw-p 00000000 00:00 0 
+7ffb08021000-7ffb0c000000 ---p 00000000 00:00 0 
+7ffb0c000000-7ffb0c021000 rw-p 00000000 00:00 0 
+7ffb0c021000-7ffb10000000 ---p 00000000 00:00 0 
+7ffb14000000-7ffb14021000 rw-p 00000000 00:00 0 
+7ffb14021000-7ffb18000000 ---p 00000000 00:00 0 
+7ffb18000000-7ffb18021000 rw-p 00000000 00:00 0 
+7ffb18021000-7ffb1c000000 ---p 00000000 00:00 0 
+7ffb1c000000-7ffb1c021000 rw-p 00000000 00:00 0 
+7ffb1c021000-7ffb20000000 ---p 00000000 00:00 0 
+7ffb2003a000-7ffb2003d000 rw-p 00000000 00:00 0 
+7ffb2003d000-7ffb2004d000 r--s 00095000 08:01 1837693                    /home/victoria-elizalde/.m2/repository/io/reactivex/rxjava/1.0.1/rxjava-1.0.1.jar
+7ffb2004d000-7ffb2004e000 r--s 00004000 08:01 1837547                    /home/victoria-elizalde/.m2/repository/io/reactivex/rxjava-debug/1.0.1/rxjava-debug-1.0.1.jar
+7ffb2004e000-7ffb2009b000 r--s 00370000 08:01 2097915                    /home/victoria-elizalde/.m2/repository/com/couchbase/client/core-io/1.1.3/core-io-1.1.3.jar
+7ffb2009b000-7ffb200a5000 r--s 00051000 08:01 2097916                    /home/victoria-elizalde/.m2/repository/com/couchbase/client/java-client/2.1.3/java-client-2.1.3.jar
+7ffb200a5000-7ffb200b3000 r--s 0009c000 08:01 1447586                    /home/victoria-elizalde/.m2/repository/org/assertj/assertj-core/3.0.0/assertj-core-3.0.0.jar
+7ffb200b3000-7ffb200bb000 r--s 00045000 08:01 1184545                    /home/victoria-elizalde/.m2/repository/junit/junit/4.12/junit-4.12.jar
+7ffb200bb000-7ffb200bf000 r--s 00033000 08:01 1316734                    /home/victoria-elizalde/.m2/repository/org/codehaus/plexus/plexus-utils/2.0.6/plexus-utils-2.0.6.jar
+7ffb200bf000-7ffb200c1000 r--s 00026000 08:01 1315837                    /home/victoria-elizalde/.m2/repository/org/apache/maven/maven-model/3.0.3/maven-model-3.0.3.jar
+7ffb200c1000-7ffb200c3000 r--s 00005000 08:01 1315980                    /home/victoria-elizalde/.m2/repository/org/objenesis/objenesis/1.0/objenesis-1.0.jar
+7ffb200c3000-7ffb200c5000 r--s 00011000 08:01 1183355                    /home/victoria-elizalde/.m2/repository/org/hamcrest/hamcrest-core/1.1/hamcrest-core-1.1.jar
+7ffb200c5000-7ffb200e1000 r--s 0013e000 08:01 1311583                    /home/victoria-elizalde/.m2/repository/org/mockito/mockito-core/1.9.0/mockito-core-1.9.0.jar
+7ffb200e1000-7ffb200ea000 r--s 0002d000 08:01 1183364                    /home/victoria-elizalde/.m2/repository/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar
+7ffb200ea000-7ffb200ee000 r--s 0000f000 08:01 1315881                    /home/victoria-elizalde/.m2/repository/com/google/code/findbugs/annotations/2.0.1/annotations-2.0.1.jar
+7ffb200ee000-7ffb200f1000 r--s 00020000 08:01 1315880                    /home/victoria-elizalde/.m2/repository/org/reflections/reflections/0.9.9/reflections-0.9.9.jar
+7ffb200f1000-7ffb200f3000 r--s 00001000 08:01 1185691                    /home/victoria-elizalde/.m2/repository/com/wordnik/swagger-annotations/1.5.1-M2/swagger-annotations-1.5.1-M2.jar
+7ffb200f3000-7ffb200f5000 r--s 0000f000 08:01 1185689                    /home/victoria-elizalde/.m2/repository/com/wordnik/swagger-models/1.5.1-M2/swagger-models-1.5.1-M2.jar
+7ffb200f5000-7ffb200f7000 r--s 0000a000 08:01 1185690                    /home/victoria-elizalde/.m2/repository/com/wordnik/swagger-core/1.5.1-M2/swagger-core-1.5.1-M2.jar
+7ffb200f7000-7ffb200fb000 r--s 00024000 08:01 1185688                    /home/victoria-elizalde/.m2/repository/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar
+7ffb200fb000-7ffb200fe000 r--s 00014000 08:01 1710579                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.4.2/jackson-dataformat-xml-2.4.2.jar
+7ffb200fe000-7ffb20100000 r--s 00009000 08:01 1185685                    /home/victoria-elizalde/.m2/repository/com/wordnik/swagger-jaxrs/1.5.1-M2/swagger-jaxrs-1.5.1-M2.jar
+7ffb20100000-7ffb20101000 r--s 00001000 08:01 1185683                    /home/victoria-elizalde/.m2/repository/com/wordnik/swagger-jersey2-jaxrs/1.5.1-M2/swagger-jersey2-jaxrs-1.5.1-M2.jar
+7ffb20101000-7ffb20115000 r--s 0010e000 08:01 1185682                    /home/victoria-elizalde/.m2/repository/org/freemarker/freemarker/2.3.21/freemarker-2.3.21.jar
+7ffb20115000-7ffb20116000 r--s 00001000 08:01 1710575                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-views-freemarker/0.8.0/dropwizard-views-freemarker-0.8.0.jar
+7ffb20116000-7ffb20118000 r--s 00001000 08:01 1710573                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-views/0.8.0/dropwizard-views-0.8.0.jar
+7ffb20118000-7ffb20119000 r--s 00000000 08:01 1710574                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-assets/0.8.0/dropwizard-assets-0.8.0.jar
+7ffb20119000-7ffb2011c000 r--s 00063000 08:01 1185681                    /home/victoria-elizalde/.m2/repository/io/federecio/dropwizard-swagger/0.7.0/dropwizard-swagger-0.7.0.jar
+7ffb2011c000-7ffb2011e000 r--s 00002000 08:01 1708675                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/toolchain/setuid/jetty-setuid-java/1.0.2/jetty-setuid-java-1.0.2.jar
+7ffb2011e000-7ffb20121000 r--s 00012000 08:01 1708678                    /home/victoria-elizalde/.m2/repository/net/sourceforge/argparse4j/argparse4j/0.4.4/argparse4j-0.4.4.jar
+7ffb20121000-7ffb20122000 r--s 00002000 08:01 1708674                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-healthchecks/3.1.0/metrics-healthchecks-3.1.0.jar
+7ffb20122000-7ffb20123000 r--s 00003000 08:01 1708671                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-json/3.1.0/metrics-json-3.1.0.jar
+7ffb20123000-7ffb20125000 r--s 00003000 08:01 1708665                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-servlets/3.1.0/metrics-servlets-3.1.0.jar
+7ffb20125000-7ffb20127000 r--s 00007000 08:01 1708668                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-jvm/3.1.0/metrics-jvm-3.1.0.jar
+7ffb20127000-7ffb2012b000 r--s 00018000 08:01 1708669                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-core/3.1.0/metrics-core-3.1.0.jar
+7ffb2012b000-7ffb2012c000 r--s 00002000 08:01 1708662                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-lifecycle/0.8.0/dropwizard-lifecycle-0.8.0.jar
+7ffb2012c000-7ffb2012e000 r--s 00018000 08:01 1708664                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-http/9.2.9.v20150224/jetty-http-9.2.9.v20150224.jar
+7ffb2012e000-7ffb20130000 r--s 0001c000 08:01 1185531                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-servlets/9.2.9.v20150224/jetty-servlets-9.2.9.v20150224.jar
+7ffb20130000-7ffb20133000 r--s 00015000 08:01 1708658                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-security/9.2.9.v20150224/jetty-security-9.2.9.v20150224.jar
+7ffb20133000-7ffb20136000 r--s 0001a000 08:01 1577222                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-servlet/9.2.9.v20150224/jetty-servlet-9.2.9.v20150224.jar
+7ffb20136000-7ffb20137000 r--s 00003000 08:01 1708659                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-jetty9/3.1.0/metrics-jetty9-3.1.0.jar
+7ffb20137000-7ffb20139000 r--s 00007000 08:01 1708656                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-jetty/0.8.0/dropwizard-jetty-0.8.0.jar
+7ffb20139000-7ffb2013a000 r--s 00001000 08:01 1708652                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-annotation/3.1.0/metrics-annotation-3.1.0.jar
+7ffb2013a000-7ffb2013b000 r--s 00006000 08:01 1708649                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-servlets/0.8.0/dropwizard-servlets-0.8.0.jar
+7ffb2013b000-7ffb2013c000 r--s 00003000 08:01 1708650                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-continuation/9.2.9.v20150224/jetty-continuation-9.2.9.v20150224.jar
+7ffb2013c000-7ffb2013d000 r--s 0000a000 08:01 1447533                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-xml/9.2.9.v20150224/jetty-xml-9.2.9.v20150224.jar
+7ffb2013d000-7ffb2013f000 r--s 00019000 08:01 1315833                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-webapp/9.2.9.v20150224/jetty-webapp-9.2.9.v20150224.jar
+7ffb2013f000-7ffb20142000 r--s 00017000 08:01 1708647                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-io/9.2.9.v20150224/jetty-io-9.2.9.v20150224.jar
+7ffb20142000-7ffb20145000 r--s 00015000 08:01 1316756                    /home/victoria-elizalde/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+7ffb20145000-7ffb2014b000 r--s 00061000 08:01 1708646                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-server/9.2.9.v20150224/jetty-server-9.2.9.v20150224.jar
+7ffb2014b000-7ffb2014e000 r--s 0000c000 08:01 1708640                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/containers/jersey-container-servlet-core/2.16/jersey-container-servlet-core-2.16.jar
+7ffb2014e000-7ffb2014f000 r--s 00003000 08:01 1708639                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/containers/jersey-container-servlet/2.16/jersey-container-servlet-2.16.jar
+7ffb2014f000-7ffb20150000 r--s 00007000 08:01 1708637                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.5.1/jackson-module-jaxb-annotations-2.5.1.jar
+7ffb20150000-7ffb20152000 r--s 00006000 08:01 1708636                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/2.5.1/jackson-jaxrs-base-2.5.1.jar
+7ffb20152000-7ffb20154000 r--s 00003000 08:01 1708633                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.5.1/jackson-jaxrs-json-provider-2.5.1.jar
+7ffb20154000-7ffb20156000 r--s 00002000 08:01 1708630                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-jersey2/3.1.0/metrics-jersey2-3.1.0.jar
+7ffb20156000-7ffb20157000 r--s 00001000 08:01 1708628                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/ext/jersey-metainf-services/2.16/jersey-metainf-services-2.16.jar
+7ffb20157000-7ffb20161000 r--s 000a5000 08:01 1708644                    /home/victoria-elizalde/.m2/repository/org/javassist/javassist/3.18.1-GA/javassist-3.18.1-GA.jar
+7ffb20161000-7ffb20164000 r--s 00027000 08:01 1708632                    /home/victoria-elizalde/.m2/repository/org/glassfish/hk2/hk2-locator/2.4.0-b09/hk2-locator-2.4.0-b09.jar
+7ffb20164000-7ffb20165000 r--s 00001000 08:01 1708624                    /home/victoria-elizalde/.m2/repository/org/glassfish/hk2/external/javax.inject/2.4.0-b09/javax.inject-2.4.0-b09.jar
+7ffb20165000-7ffb20167000 r--s 00002000 08:01 1708619                    /home/victoria-elizalde/.m2/repository/org/glassfish/hk2/external/aopalliance-repackaged/2.4.0-b09/aopalliance-repackaged-2.4.0-b09.jar
+7ffb20167000-7ffb2016a000 r--s 00015000 08:01 1708620                    /home/victoria-elizalde/.m2/repository/org/glassfish/hk2/hk2-utils/2.4.0-b09/hk2-utils-2.4.0-b09.jar
+7ffb2016a000-7ffb2016f000 r--s 00028000 08:01 1708617                    /home/victoria-elizalde/.m2/repository/org/glassfish/hk2/hk2-api/2.4.0-b09/hk2-api-2.4.0-b09.jar
+7ffb2016f000-7ffb20171000 r--s 00005000 08:01 1316766                    /home/victoria-elizalde/.m2/repository/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar
+7ffb20171000-7ffb20174000 r--s 0000f000 08:01 1708615                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/media/jersey-media-jaxb/2.16/jersey-media-jaxb-2.16.jar
+7ffb20174000-7ffb20178000 r--s 00019000 08:01 1708613                    /home/victoria-elizalde/.m2/repository/javax/ws/rs/javax.ws.rs-api/2.0.1/javax.ws.rs-api-2.0.1.jar
+7ffb20178000-7ffb2017c000 r--s 00023000 08:01 1708623                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/core/jersey-client/2.16/jersey-client-2.16.jar
+7ffb2017c000-7ffb2017d000 r--s 00004000 08:01 1708609                    /home/victoria-elizalde/.m2/repository/org/glassfish/hk2/osgi-resource-locator/1.0.1/osgi-resource-locator-1.0.1.jar
+7ffb2017d000-7ffb20194000 r--s 000d5000 08:01 1708612                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/bundles/repackaged/jersey-guava/2.16/jersey-guava-2.16.jar
+7ffb20194000-7ffb201a2000 r--s 00098000 08:01 1708607                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/core/jersey-common/2.16/jersey-common-2.16.jar
+7ffb201a2000-7ffb201b7000 r--s 000cd000 08:01 1708606                    /home/victoria-elizalde/.m2/repository/org/glassfish/jersey/core/jersey-server/2.16/jersey-server-2.16.jar
+7ffb201b7000-7ffb201b9000 r--s 0000a000 08:01 1708603                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-jersey/0.8.0/dropwizard-jersey-0.8.0.jar
+7ffb201b9000-7ffb201bb000 r--s 00003000 08:01 1708596                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-metrics/0.8.0/dropwizard-metrics-0.8.0.jar
+7ffb201bb000-7ffb201c1000 r--s 00051000 08:01 1708599                    /home/victoria-elizalde/.m2/repository/org/eclipse/jetty/jetty-util/9.2.9.v20150224/jetty-util-9.2.9.v20150224.jar
+7ffb201c1000-7ffb201c3000 r--s 00003000 08:01 1708594                    /home/victoria-elizalde/.m2/repository/org/slf4j/jcl-over-slf4j/1.7.10/jcl-over-slf4j-1.7.10.jar
+7ffb201c3000-7ffb201c4000 r--s 00005000 08:01 1708597                    /home/victoria-elizalde/.m2/repository/org/slf4j/log4j-over-slf4j/1.7.10/log4j-over-slf4j-1.7.10.jar
+7ffb201c4000-7ffb201ce000 r--s 0005f000 08:01 1708601                    /home/victoria-elizalde/.m2/repository/ch/qos/logback/logback-core/1.1.2/logback-core-1.1.2.jar
+7ffb201ce000-7ffb201d0000 r--s 00000000 08:01 1577218                    /home/victoria-elizalde/.m2/repository/org/slf4j/jul-to-slf4j/1.7.10/jul-to-slf4j-1.7.10.jar
+7ffb201d0000-7ffb201d2000 r--s 00000000 08:01 1708592                    /home/victoria-elizalde/.m2/repository/io/dropwizard/metrics/metrics-logback/3.1.0/metrics-logback-3.1.0.jar
+7ffb201d2000-7ffb201d4000 r--s 00004000 08:01 1708589                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-logging/0.8.0/dropwizard-logging-0.8.0.jar
+7ffb201d4000-7ffb201db000 r--s 0005e000 08:01 1185529                    /home/victoria-elizalde/.m2/repository/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar
+7ffb201db000-7ffb201e2000 r--s 0003c000 08:01 1315831                    /home/victoria-elizalde/.m2/repository/org/yaml/snakeyaml/1.12/snakeyaml-1.12.jar
+7ffb201e2000-7ffb201eb000 r--s 00046000 08:01 1708587                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.5.1/jackson-dataformat-yaml-2.5.1.jar
+7ffb201eb000-7ffb201ed000 r--s 00004000 08:01 1708581                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-configuration/0.8.0/dropwizard-configuration-0.8.0.jar
+7ffb201ed000-7ffb201f1000 r--s 00033000 08:01 1708586                    /home/victoria-elizalde/.m2/repository/org/glassfish/javax.el/3.0.0/javax.el-3.0.0.jar
+7ffb201f1000-7ffb201f3000 r--s 0000d000 08:01 1708580                    /home/victoria-elizalde/.m2/repository/com/fasterxml/classmate/1.0.0/classmate-1.0.0.jar
+7ffb201f3000-7ffb201f5000 r--s 0000c000 08:01 1708574                    /home/victoria-elizalde/.m2/repository/org/jboss/logging/jboss-logging/3.1.3.GA/jboss-logging-3.1.3.GA.jar
+7ffb201f5000-7ffb201f9000 r--s 0000c000 08:01 1708579                    /home/victoria-elizalde/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar
+7ffb201f9000-7ffb20207000 r--s 0008d000 08:01 1708572                    /home/victoria-elizalde/.m2/repository/org/hibernate/hibernate-validator/5.1.3.Final/hibernate-validator-5.1.3.Final.jar
+7ffb20207000-7ffb20208000 r--s 00004000 08:01 1708573                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-validation/0.8.0/dropwizard-validation-0.8.0.jar
+7ffb20208000-7ffb2020e000 r--s 0003d000 08:01 1708578                    /home/victoria-elizalde/.m2/repository/ch/qos/logback/logback-classic/1.1.2/logback-classic-1.1.2.jar
+7ffb2020e000-7ffb2020f000 r--s 00007000 08:01 1708568                    /home/victoria-elizalde/.m2/repository/org/slf4j/slf4j-api/1.7.10/slf4j-api-1.7.10.jar
+7ffb2020f000-7ffb20212000 r--s 0000d000 08:01 1708563                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-joda/2.5.1/jackson-datatype-joda-2.5.1.jar
+7ffb20212000-7ffb20215000 r--s 0001f000 08:01 1708564                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/module/jackson-module-afterburner/2.5.1/jackson-module-afterburner-2.5.1.jar
+7ffb20215000-7ffb20218000 r--s 0000f000 08:01 1708569                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-guava/2.5.1/jackson-datatype-guava-2.5.1.jar
+7ffb20218000-7ffb20219000 r--s 00001000 08:01 1708561                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk7/2.5.1/jackson-datatype-jdk7-2.5.1.jar
+7ffb20219000-7ffb2022b000 r--s 00105000 08:01 1708557                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.5.1/jackson-databind-2.5.1.jar
+7ffb2022b000-7ffb2022f000 r--s 00035000 08:01 1708556                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.5.1/jackson-core-2.5.1.jar
+7ffb2022f000-7ffb20230000 r--s 00004000 08:01 1708553                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-jackson/0.8.0/dropwizard-jackson-0.8.0.jar
+7ffb20230000-7ffb2023f000 r--s 00081000 08:01 1708555                    /home/victoria-elizalde/.m2/repository/joda-time/joda-time/2.7/joda-time-2.7.jar
+7ffb2023f000-7ffb20242000 r--s 00006000 08:01 1708547                    /home/victoria-elizalde/.m2/repository/com/google/code/findbugs/jsr305/3.0.0/jsr305-3.0.0.jar
+7ffb20242000-7ffb2026d000 r--s 001fc000 08:01 1708550                    /home/victoria-elizalde/.m2/repository/com/google/guava/guava/18.0/guava-18.0.jar
+7ffb2026d000-7ffb20280000 r--s 00344000 08:01 3023507                    /usr/lib/jvm/java-8-oracle/jre/lib/resources.jar
+7ffb20280000-7ffb20293000 r--s 000d6000 08:01 3023502                    /usr/lib/jvm/java-8-oracle/jre/lib/plugin.jar
+7ffb20293000-7ffb202ad000 r--s 001f3000 08:01 3023492                    /usr/lib/jvm/java-8-oracle/jre/lib/deploy.jar
+7ffb202ad000-7ffb202ae000 ---p 00000000 00:00 0 
+7ffb202ae000-7ffb203ae000 rw-p 00000000 00:00 0                          [stack:3949]
+7ffb203ae000-7ffb203b1000 ---p 00000000 00:00 0 
+7ffb203b1000-7ffb204af000 rw-p 00000000 00:00 0                          [stack:3948]
+7ffb204af000-7ffb204b2000 ---p 00000000 00:00 0 
+7ffb204b2000-7ffb205b0000 rw-p 00000000 00:00 0                          [stack:3947]
+7ffb205b0000-7ffb205b3000 ---p 00000000 00:00 0 
+7ffb205b3000-7ffb206b1000 rw-p 00000000 00:00 0                          [stack:3946]
+7ffb206b1000-7ffb206b4000 ---p 00000000 00:00 0 
+7ffb206b4000-7ffb207b2000 rw-p 00000000 00:00 0                          [stack:3945]
+7ffb207b2000-7ffb207b5000 ---p 00000000 00:00 0 
+7ffb207b5000-7ffb208b3000 rw-p 00000000 00:00 0                          [stack:3940]
+7ffb208b3000-7ffb208b6000 ---p 00000000 00:00 0 
+7ffb208b6000-7ffb209b4000 rw-p 00000000 00:00 0                          [stack:3939]
+7ffb209b4000-7ffb209b7000 ---p 00000000 00:00 0 
+7ffb209b7000-7ffb20ab5000 rw-p 00000000 00:00 0                          [stack:3938]
+7ffb20ab5000-7ffb20ab9000 r-xp 00000000 08:01 3023627                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libdt_socket.so
+7ffb20ab9000-7ffb20cb8000 ---p 00004000 08:01 3023627                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libdt_socket.so
+7ffb20cb8000-7ffb20cb9000 rw-p 00003000 08:01 3023627                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libdt_socket.so
+7ffb20cb9000-7ffb20cbc000 ---p 00000000 00:00 0 
+7ffb20cbc000-7ffb20dba000 rw-p 00000000 00:00 0                          [stack:3937]
+7ffb20dba000-7ffb20dbd000 ---p 00000000 00:00 0 
+7ffb20dbd000-7ffb20ebb000 rw-p 00000000 00:00 0                          [stack:3936]
+7ffb20ebb000-7ffb20ebe000 ---p 00000000 00:00 0 
+7ffb20ebe000-7ffb20fbc000 rw-p 00000000 00:00 0                          [stack:3935]
+7ffb20fbc000-7ffb20fbd000 ---p 00000000 00:00 0 
+7ffb20fbd000-7ffb2209f000 rw-p 00000000 00:00 0                          [stack:3934]
+7ffb2209f000-7ffb22278000 r--s 03d09000 08:01 3031037                    /usr/lib/jvm/java-8-oracle/jre/lib/rt.jar
+7ffb22278000-7ffb2296e000 rw-p 00000000 00:00 0 
+7ffb2296e000-7ffb22aee000 ---p 00000000 00:00 0 
+7ffb22aee000-7ffb26c35000 rw-p 00000000 00:00 0 
+7ffb26c35000-7ffb26c36000 ---p 00000000 00:00 0 
+7ffb26c36000-7ffb26d36000 rw-p 00000000 00:00 0                          [stack:3933]
+7ffb26d36000-7ffb26d37000 ---p 00000000 00:00 0 
+7ffb26d37000-7ffb26e37000 rw-p 00000000 00:00 0                          [stack:3932]
+7ffb26e37000-7ffb26e38000 ---p 00000000 00:00 0 
+7ffb26e38000-7ffb26f38000 rw-p 00000000 00:00 0                          [stack:3931]
+7ffb26f38000-7ffb26f39000 ---p 00000000 00:00 0 
+7ffb26f39000-7ffb27063000 rw-p 00000000 00:00 0                          [stack:3930]
+7ffb27063000-7ffb272c9000 ---p 00000000 00:00 0 
+7ffb272c9000-7ffb272f3000 rw-p 00000000 00:00 0 
+7ffb272f3000-7ffb27558000 ---p 00000000 00:00 0 
+7ffb27558000-7ffb2756d000 rw-p 00000000 00:00 0 
+7ffb2756d000-7ffb276a0000 ---p 00000000 00:00 0 
+7ffb276a0000-7ffb276ad000 rw-p 00000000 00:00 0 
+7ffb276ad000-7ffb27a61000 ---p 00000000 00:00 0 
+7ffb27a61000-7ffb27d61000 rwxp 00000000 00:00 0 
+7ffb27d61000-7ffb36a61000 ---p 00000000 00:00 0 
+7ffb36a61000-7ffb36a7b000 r-xp 00000000 08:01 3023620                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7ffb36a7b000-7ffb36c7b000 ---p 0001a000 08:01 3023620                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7ffb36c7b000-7ffb36c7c000 rw-p 0001a000 08:01 3023620                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libzip.so
+7ffb36c7c000-7ffb36c87000 r-xp 00000000 08:01 393242                     /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7ffb36c87000-7ffb36e86000 ---p 0000b000 08:01 393242                     /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7ffb36e86000-7ffb36e87000 r--p 0000a000 08:01 393242                     /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7ffb36e87000-7ffb36e88000 rw-p 0000b000 08:01 393242                     /lib/x86_64-linux-gnu/libnss_files-2.19.so
+7ffb36e88000-7ffb36e93000 r-xp 00000000 08:01 397176                     /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7ffb36e93000-7ffb37092000 ---p 0000b000 08:01 397176                     /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7ffb37092000-7ffb37093000 r--p 0000a000 08:01 397176                     /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7ffb37093000-7ffb37094000 rw-p 0000b000 08:01 397176                     /lib/x86_64-linux-gnu/libnss_nis-2.19.so
+7ffb37094000-7ffb370ab000 r-xp 00000000 08:01 393311                     /lib/x86_64-linux-gnu/libnsl-2.19.so
+7ffb370ab000-7ffb372aa000 ---p 00017000 08:01 393311                     /lib/x86_64-linux-gnu/libnsl-2.19.so
+7ffb372aa000-7ffb372ab000 r--p 00016000 08:01 393311                     /lib/x86_64-linux-gnu/libnsl-2.19.so
+7ffb372ab000-7ffb372ac000 rw-p 00017000 08:01 393311                     /lib/x86_64-linux-gnu/libnsl-2.19.so
+7ffb372ac000-7ffb372ae000 rw-p 00000000 00:00 0 
+7ffb372ae000-7ffb372b7000 r-xp 00000000 08:01 393310                     /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7ffb372b7000-7ffb374b6000 ---p 00009000 08:01 393310                     /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7ffb374b6000-7ffb374b7000 r--p 00008000 08:01 393310                     /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7ffb374b7000-7ffb374b8000 rw-p 00009000 08:01 393310                     /lib/x86_64-linux-gnu/libnss_compat-2.19.so
+7ffb374b8000-7ffb37b9a000 r--p 00000000 08:01 2890751                    /usr/lib/locale/locale-archive
+7ffb37b9a000-7ffb37bd3000 r-xp 00000000 08:01 3028252                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjdwp.so
+7ffb37bd3000-7ffb37dd2000 ---p 00039000 08:01 3028252                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjdwp.so
+7ffb37dd2000-7ffb37dd4000 rw-p 00038000 08:01 3028252                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjdwp.so
+7ffb37dd4000-7ffb37dfe000 r-xp 00000000 08:01 3031022                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7ffb37dfe000-7ffb37ffe000 ---p 0002a000 08:01 3031022                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7ffb37ffe000-7ffb38000000 rw-p 0002a000 08:01 3031022                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libjava.so
+7ffb38000000-7ffb387ef000 rw-p 00000000 00:00 0 
+7ffb387ef000-7ffb3c000000 ---p 00000000 00:00 0 
+7ffb3c000000-7ffb3c002000 r--s 00008000 08:01 1708551                    /home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar
+7ffb3c002000-7ffb3c003000 r--s 00002000 08:01 1708544                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-util/0.8.0/dropwizard-util-0.8.0.jar
+7ffb3c003000-7ffb3c005000 r--s 00008000 08:01 1708545                    /home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-core/0.8.0/dropwizard-core-0.8.0.jar
+7ffb3c005000-7ffb3c007000 r-xp 00000000 08:01 3028269                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnpt.so
+7ffb3c007000-7ffb3c207000 ---p 00002000 08:01 3028269                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnpt.so
+7ffb3c207000-7ffb3c208000 rw-p 00002000 08:01 3028269                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libnpt.so
+7ffb3c208000-7ffb3c215000 r-xp 00000000 08:01 3028284                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7ffb3c215000-7ffb3c415000 ---p 0000d000 08:01 3028284                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7ffb3c415000-7ffb3c417000 rw-p 0000d000 08:01 3028284                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/libverify.so
+7ffb3c417000-7ffb3c41e000 r-xp 00000000 08:01 393319                     /lib/x86_64-linux-gnu/librt-2.19.so
+7ffb3c41e000-7ffb3c61d000 ---p 00007000 08:01 393319                     /lib/x86_64-linux-gnu/librt-2.19.so
+7ffb3c61d000-7ffb3c61e000 r--p 00006000 08:01 393319                     /lib/x86_64-linux-gnu/librt-2.19.so
+7ffb3c61e000-7ffb3c61f000 rw-p 00007000 08:01 393319                     /lib/x86_64-linux-gnu/librt-2.19.so
+7ffb3c61f000-7ffb3c724000 r-xp 00000000 08:01 393235                     /lib/x86_64-linux-gnu/libm-2.19.so
+7ffb3c724000-7ffb3c923000 ---p 00105000 08:01 393235                     /lib/x86_64-linux-gnu/libm-2.19.so
+7ffb3c923000-7ffb3c924000 r--p 00104000 08:01 393235                     /lib/x86_64-linux-gnu/libm-2.19.so
+7ffb3c924000-7ffb3c925000 rw-p 00105000 08:01 393235                     /lib/x86_64-linux-gnu/libm-2.19.so
+7ffb3c925000-7ffb3d5d3000 r-xp 00000000 08:01 3031028                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7ffb3d5d3000-7ffb3d7d2000 ---p 00cae000 08:01 3031028                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7ffb3d7d2000-7ffb3d8a9000 rw-p 00cad000 08:01 3031028                    /usr/lib/jvm/java-8-oracle/jre/lib/amd64/server/libjvm.so
+7ffb3d8a9000-7ffb3d8ed000 rw-p 00000000 00:00 0 
+7ffb3d8ed000-7ffb3daa8000 r-xp 00000000 08:01 393316                     /lib/x86_64-linux-gnu/libc-2.19.so
+7ffb3daa8000-7ffb3dca7000 ---p 001bb000 08:01 393316                     /lib/x86_64-linux-gnu/libc-2.19.so
+7ffb3dca7000-7ffb3dcab000 r--p 001ba000 08:01 393316                     /lib/x86_64-linux-gnu/libc-2.19.so
+7ffb3dcab000-7ffb3dcad000 rw-p 001be000 08:01 393316                     /lib/x86_64-linux-gnu/libc-2.19.so
+7ffb3dcad000-7ffb3dcb2000 rw-p 00000000 00:00 0 
+7ffb3dcb2000-7ffb3dcb5000 r-xp 00000000 08:01 393305                     /lib/x86_64-linux-gnu/libdl-2.19.so
+7ffb3dcb5000-7ffb3deb4000 ---p 00003000 08:01 393305                     /lib/x86_64-linux-gnu/libdl-2.19.so
+7ffb3deb4000-7ffb3deb5000 r--p 00002000 08:01 393305                     /lib/x86_64-linux-gnu/libdl-2.19.so
+7ffb3deb5000-7ffb3deb6000 rw-p 00003000 08:01 393305                     /lib/x86_64-linux-gnu/libdl-2.19.so
+7ffb3deb6000-7ffb3decb000 r-xp 00000000 08:01 3032407                    /usr/lib/jvm/java-8-oracle/lib/amd64/jli/libjli.so
+7ffb3decb000-7ffb3e0cb000 ---p 00015000 08:01 3032407                    /usr/lib/jvm/java-8-oracle/lib/amd64/jli/libjli.so
+7ffb3e0cb000-7ffb3e0cc000 rw-p 00015000 08:01 3032407                    /usr/lib/jvm/java-8-oracle/lib/amd64/jli/libjli.so
+7ffb3e0cc000-7ffb3e0e5000 r-xp 00000000 08:01 393317                     /lib/x86_64-linux-gnu/libpthread-2.19.so
+7ffb3e0e5000-7ffb3e2e4000 ---p 00019000 08:01 393317                     /lib/x86_64-linux-gnu/libpthread-2.19.so
+7ffb3e2e4000-7ffb3e2e5000 r--p 00018000 08:01 393317                     /lib/x86_64-linux-gnu/libpthread-2.19.so
+7ffb3e2e5000-7ffb3e2e6000 rw-p 00019000 08:01 393317                     /lib/x86_64-linux-gnu/libpthread-2.19.so
+7ffb3e2e6000-7ffb3e2ea000 rw-p 00000000 00:00 0 
+7ffb3e2ea000-7ffb3e30d000 r-xp 00000000 08:01 393313                     /lib/x86_64-linux-gnu/ld-2.19.so
+7ffb3e30d000-7ffb3e312000 r--s 00094000 08:01 3031039                    /usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar
+7ffb3e312000-7ffb3e313000 r--s 00000000 08:01 3023588                    /usr/lib/jvm/java-8-oracle/jre/lib/management-agent.jar
+7ffb3e313000-7ffb3e318000 r--s 00083000 08:01 3023576                    /usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar
+7ffb3e318000-7ffb3e322000 r--s 00069000 08:01 3023497                    /usr/lib/jvm/java-8-oracle/jre/lib/javaws.jar
+7ffb3e322000-7ffb3e3ed000 rw-p 00000000 00:00 0 
+7ffb3e3ed000-7ffb3e3f0000 ---p 00000000 00:00 0 
+7ffb3e3f0000-7ffb3e4f2000 rw-p 00000000 00:00 0                          [stack:3929]
+7ffb3e4f2000-7ffb3e4f4000 r--s 00007000 08:01 3023505                    /usr/lib/jvm/java-8-oracle/jre/lib/jfxswt.jar
+7ffb3e4f4000-7ffb3e4f9000 r--s 002f8000 08:01 3023496                    /usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar
+7ffb3e4f9000-7ffb3e4fc000 r--s 0001a000 08:01 3023462                    /usr/lib/jvm/java-8-oracle/jre/lib/jce.jar
+7ffb3e4fc000-7ffb3e4fe000 r--s 00020000 08:01 1576564                    /home/victoria-elizalde/idea-IU-141.713.2/plugins/junit/lib/junit-rt.jar
+7ffb3e4fe000-7ffb3e500000 r--s 00016000 08:01 1315215                    /home/victoria-elizalde/idea-IU-141.713.2/lib/idea_rt.jar
+7ffb3e500000-7ffb3e508000 rw-s 00000000 08:01 5767220                    /tmp/hsperfdata_victoria-elizalde/3927
+7ffb3e508000-7ffb3e509000 rw-p 00000000 00:00 0 
+7ffb3e509000-7ffb3e50a000 r--p 00000000 00:00 0 
+7ffb3e50a000-7ffb3e50c000 rw-p 00000000 00:00 0 
+7ffb3e50c000-7ffb3e50d000 r--p 00022000 08:01 393313                     /lib/x86_64-linux-gnu/ld-2.19.so
+7ffb3e50d000-7ffb3e50e000 rw-p 00023000 08:01 393313                     /lib/x86_64-linux-gnu/ld-2.19.so
+7ffb3e50e000-7ffb3e50f000 rw-p 00000000 00:00 0 
+7ffc28683000-7ffc286a7000 rw-p 00000000 00:00 0                          [stack]
+7ffc287e4000-7ffc287e6000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:35723,suspend=y,server=n -ea -Dfile.encoding=UTF-8 
+java_command: com.intellij.rt.execution.junit.JUnitStarter -ideVersion5 com.etermax.conversations.test.unit.repository.MemoryConversationRepositoryTest,deleteMessageTest
+java_class_path (initial): /home/victoria-elizalde/idea-IU-141.713.2/lib/idea_rt.jar:/home/victoria-elizalde/idea-IU-141.713.2/plugins/junit/lib/junit-rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/deploy.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/javaws.jar:/usr/lib/jvm/java-8-oracle/jre/lib/plugin.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfxswt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/lib/management-agent.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/dnsns.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/cldrdata.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/jfxrt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/nashorn.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunec.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunjce_provider.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/localedata.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/zipfs.jar:/usr/lib/jvm/java-8-oracle/jre/lib/ext/sunpkcs11.jar:/home/victoria-elizalde/workspace/conversations_api/target/test-classes:/home/victoria-elizalde/workspace/conversations_api/target/classes:/home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-core/0.8.0/dropwizard-core-0.8.0.jar:/home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-util/0.8.0/dropwizard-util-0.8.0.jar:/home/victoria-elizalde/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.5.0/jackson-annotations-2.5.0.jar:/home/victoria-elizalde/.m2/repository/com/google/guava/guava/18.0/guava-18.0.jar:/home/victoria-elizalde/.m2/repository/com/google/code/findbugs/jsr305/3.0.0/jsr305-3.0.0.jar:/home/victoria-elizalde/.m2/repository/joda-time/joda-time/2.7/joda-time-2.7.jar:/home/victoria-elizalde/.m2/repository/io/dropwizard/dropwizard-jackson/0.8.0/dropwizard-jackson-0.8.0.jar:/home/victoria-elizalde/.m2/repository/
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+LD_LIBRARY_PATH=/home/victoria-elizalde/idea-IU-141.713.2/bin:
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0xaad1e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0xaad1e0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x90b450], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0x90b450], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0x90b450], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x90b450], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR1: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGUSR2: [libjvm.so+0x90ca90], sa_mask[0]=00100000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: [libjvm.so+0x90dde0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGINT: [libjvm.so+0x90dde0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGTERM: [libjvm.so+0x90dde0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGQUIT: [libjvm.so+0x90dde0], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+
+
+---------------  S Y S T E M  ---------------
+
+OS:DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=14.04
+DISTRIB_CODENAME=trusty
+DISTRIB_DESCRIPTION="Ubuntu 14.04.2 LTS"
+
+uname:Linux 3.13.0-57-generic #95-Ubuntu SMP Fri Jun 19 09:28:15 UTC 2015 x86_64
+libc:glibc 2.19 NPTL 2.19 
+rlimit: STACK 8192k, CORE 0k, NPROC 62693, NOFILE 4096, AS infinity
+load average:1,41 0,58 0,46
+
+/proc/meminfo:
+MemTotal:        8046320 kB
+MemFree:         2380792 kB
+Buffers:          266208 kB
+Cached:          1920500 kB
+SwapCached:            0 kB
+Active:          3946924 kB
+Inactive:        1416192 kB
+Active(anon):    3183172 kB
+Inactive(anon):   501404 kB
+Active(file):     763752 kB
+Inactive(file):   914788 kB
+Unevictable:          32 kB
+Mlocked:              32 kB
+SwapTotal:       8255484 kB
+SwapFree:        8255484 kB
+Dirty:               952 kB
+Writeback:             0 kB
+AnonPages:       3176436 kB
+Mapped:           276344 kB
+Shmem:            508172 kB
+Slab:             187096 kB
+SReclaimable:     154884 kB
+SUnreclaim:        32212 kB
+KernelStack:        5232 kB
+PageTables:        33444 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    12278644 kB
+Committed_AS:    7454988 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      360768 kB
+VmallocChunk:   34359364696 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:   1912832 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       72236 kB
+DirectMap2M:     1894400 kB
+DirectMap1G:     6291456 kB
+
+
+CPU:total 4 (4 cores per cpu, 1 threads per core) family 6 model 60 stepping 3, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, lzcnt, tsc, tscinvbit, bmi1, bmi2
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+stepping	: 3
+microcode	: 0x12
+cpu MHz		: 2200.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 0
+cpu cores	: 4
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid
+bogomips	: 6385.65
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+stepping	: 3
+microcode	: 0x12
+cpu MHz		: 1700.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 1
+cpu cores	: 4
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid
+bogomips	: 6385.65
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+stepping	: 3
+microcode	: 0x12
+cpu MHz		: 3201.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 2
+cpu cores	: 4
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid
+bogomips	: 6385.65
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 60
+model name	: Intel(R) Core(TM) i5-4460  CPU @ 3.20GHz
+stepping	: 3
+microcode	: 0x12
+cpu MHz		: 3201.000
+cache size	: 6144 KB
+physical id	: 0
+siblings	: 4
+core id		: 3
+cpu cores	: 4
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid
+bogomips	: 6385.65
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 39 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 8046320k(2380792k free), swap 8255484k(8255484k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.45-b02) for linux-amd64 JRE (1.8.0_45-b14), built on Apr 10 2015 10:07:45 by "java_re" with gcc 4.3.0 20080428 (Red Hat 4.3.0-8)
+
+time: Fri Sep 11 10:40:32 2015
+elapsed time: 1982 seconds (0d 0h 33m 2s)
+
