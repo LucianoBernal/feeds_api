@@ -46,12 +46,11 @@ public class ElasticSearchRepositoryFactory implements ConversationRepositoryFac
 
 	@Override
 	public ConversationRepository createRepository() {
-		AddressedMessageFactory addressedMessageFactory = new AddressedMessageFactory();
 		ConversationIdGenerationStrategy idGenerator = new HashedConversationIdGenerator();
 		if (conversationRepository == null) {
 			Client client = initClient(cluster, hosts);
 			conversationRepository = new ElasticsearchConversationRepository(client, maxMessages,
-																			 addressedMessageFactory, idGenerator, counterDAOFactory.createDAO());
+					idGenerator, counterDAOFactory.createDAO());
 		}
 		return conversationRepository;
 	}

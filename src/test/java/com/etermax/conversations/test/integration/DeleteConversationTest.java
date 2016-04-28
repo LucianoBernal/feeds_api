@@ -9,7 +9,6 @@ import com.etermax.conversations.error.ConversationNotFoundException;
 import com.etermax.conversations.error.DeleteConversationException;
 import com.etermax.conversations.error.UserNotInConversationException;
 import com.etermax.conversations.factory.ConversationRepositoryFactory;
-import com.etermax.conversations.repository.ConversationRepository;
 import com.etermax.conversations.resource.ConversationDeletionResource;
 import com.etermax.conversations.resource.ConversationMessagesResource;
 import com.etermax.conversations.resource.ConversationsResource;

@@ -1,7 +1,6 @@
 package com.etermax.conversations.test.unit.repository;
 
 import com.etermax.conversations.error.*;
-import com.etermax.conversations.factory.AddressedMessageFactory;
 import com.etermax.conversations.model.*;
 import com.etermax.conversations.repository.ConversationRepository;
 import com.etermax.conversations.repository.impl.memory.MemoryConversationRepository;

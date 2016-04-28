@@ -3,7 +3,6 @@ package com.etermax.conversations.test.unit.service;
 import com.etermax.conversations.error.*;
 import com.etermax.conversations.model.Conversation;
 import com.etermax.conversations.model.ConversationHistory;
-import com.etermax.conversations.model.ConversationSync;
 import com.etermax.conversations.model.Range;
 import com.etermax.conversations.repository.ConversationRepository;
 import com.etermax.conversations.service.SynchronizationService;
@@ -12,10 +11,8 @@ import com.google.common.collect.Sets;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

@@ -2,7 +2,6 @@ package com.etermax.conversations.test.integration;
 
 import com.etermax.conversations.adapter.MessageAdapter;
 import com.etermax.conversations.adapter.SynchronizationAdapter;
-import com.etermax.conversations.dto.AddressedMessageCreationDTO;
 import com.etermax.conversations.dto.HasMoreDTO;
 import com.etermax.conversations.dto.HistoryDTO;
 import com.etermax.conversations.dto.TextMessageDisplayDTO;
@@ -10,13 +9,11 @@ import com.etermax.conversations.error.ClientException;
 import com.etermax.conversations.error.ConversationNotFoundException;
 import com.etermax.conversations.factory.ConversationRepositoryFactory;
 import com.etermax.conversations.resource.HistoryResource;
-import com.etermax.conversations.resource.MessagesResource;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Date;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 

@@ -1,10 +1,5 @@
 package com.etermax.conversations.repository.impl.elasticsearch.dao.counter.impl;
 
-import org.elasticsearch.script.Script;
-import org.elasticsearch.script.ScriptService;
-
-import java.util.HashMap;
-
 public class ElasticsearchCounterDAO {
 
 //	private void incrementUnreadMessages(Long userId, String conversationId, String app) {

@@ -2,40 +2,21 @@ package com.etermax.conversations.repository.impl.elasticsearch.mapper;
 
 import com.etermax.conversations.error.InvalidConversation;
 import com.etermax.conversations.error.InvalidUserException;
-import com.etermax.conversations.factory.AddressedMessageFactory;
 import com.etermax.conversations.model.*;
 import com.etermax.conversations.repository.impl.elasticsearch.domain.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ElasticSearchModelMapper {
-	private AddressedMessageFactory addressedMessageFactory;
-
-	public ElasticSearchModelMapper(AddressedMessageFactory addressedMessageFactory) {
-		this.addressedMessageFactory = addressedMessageFactory;
+	public ElasticSearchModelMapper() {
 	}
 
 	public ElasticsearchConversation toElasticsearchConversation(Conversation conversation) {
-		//TODO: Borrar luego de migracion
-		if (conversation instanceof DeletedConversation) {
-			ElasticsearchConversation eConv = new ElasticsearchConversation(conversation.getId(),
-																			conversation.getUserIds(), "SINGLE");
-			eConv.setDeletedBy(createDeletionData((DeletedConversation) conversation));
-			return eConv;
-		} else {
 			return new ElasticsearchConversation(conversation.getId(), conversation.getUserIds(), "SINGLE");
-		}
-	}
-
-	//TODO: Borrar luego de migracion
-	private List<DeletionData> createDeletionData(DeletedConversation deletedConversation) {
-		List<String> apps = Arrays.asList("ANGRY_WORDS", "ANGRY_MIX", "TRIVIA_CRACK", "CHANNELS", "TRIVIA_CRACK_FCB",
-										  "TRIVIA_CRACK_FCM");
-
-		return apps.stream()
-				   .map(app -> new DeletionData(deletedConversation.getDeletedBy() + "-" + app, new Date().getTime()))
-				   .collect(Collectors.toList());
 	}
 
 	public ElasticSearchMessage toElasticsearchMessage(ConversationMessage message, Conversation conversation) {
@@ -44,22 +25,6 @@ public class ElasticSearchModelMapper {
 		ElasticSearchMessage elasticSearchMessage = message.accept(conversationMessageMapperVisitor);
 		elasticSearchMessage.setConversationId(conversation.getId());
 		return elasticSearchMessage;
-	}
-
-	//TODO: BORRAR DESPUES DE LA MIGRACION
-	private void addReceiptsToMessage(ConversationMessage message, ElasticSearchMessage elasticSearchMessage) {
-		if (message.getMessageReceipt() != null && message.getMessageReceipt().getReceipts() != null
-				&& !message.getMessageReceipt().getReceipts().isEmpty()) {
-			elasticSearchMessage.addReceipts(buildReceiptsFromMessage(message));
-		}
-	}
-
-	private List<ElasticSearchIndividualMessageReceipt> buildReceiptsFromMessage(ConversationMessage message) {
-		return message.getMessageReceipt()
-					  .getReceipts()
-					  .stream()
-					  .map(this::buildElasticsearchIndividualMessageReceipt)
-					  .collect(Collectors.toList());
 	}
 
 	public Conversation fromElasticSearchConversation(ElasticsearchConversation conversation) {
@@ -145,20 +110,6 @@ public class ElasticSearchModelMapper {
 		}
 		Long userId = elasticsearchIndividualReceipt.getUserId();
 		return new IndividualMessageReceipt(type, userId);
-	}
-
-	public List<AddressedMessage> buildAddressedMessages(ElasticsearchConversation elasticsearchConversation,
-			List<ElasticSearchMessage> addressedMessages) {
-		Conversation conversation = fromElasticSearchConversation(elasticsearchConversation);
-		return addressedMessages.stream()
-								.map(elasticSearchMessage -> toAddressedMessage(elasticSearchMessage, conversation))
-								.collect(Collectors.toList());
-	}
-
-	public AddressedMessage toAddressedMessage(ElasticSearchMessage elasticSearchMessage, Conversation conversation) {
-		ConversationMessage message = (ConversationMessage) elasticSearchMessage.accept(
-				new ElasticSearchDataMapperVisitor());
-		return addressedMessageFactory.createAddressedMessage(message, conversation);
 	}
 
 }

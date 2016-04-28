@@ -3,7 +3,6 @@ package com.etermax.conversations.repository.impl.elasticsearch;
 import com.etermax.conversations.error.ConversationNotFoundException;
 import com.etermax.conversations.error.MessageNotFoundException;
 import com.etermax.conversations.error.UserNotInConversationException;
-import com.etermax.conversations.factory.AddressedMessageFactory;
 import com.etermax.conversations.model.*;
 import com.etermax.conversations.repository.ConversationRepository;
 import com.etermax.conversations.repository.impl.elasticsearch.dao.ElasticsearchDAO;
@@ -14,14 +13,12 @@ import com.etermax.conversations.repository.impl.elasticsearch.domain.Elasticsea
 import com.etermax.conversations.repository.impl.elasticsearch.domain.ElasticsearchDataList;
 import com.etermax.conversations.repository.impl.elasticsearch.mapper.ElasticSearchModelMapper;
 import com.etermax.conversations.repository.impl.elasticsearch.strategy.ConversationIdGenerationStrategy;
-import com.google.common.collect.Sets;
 import org.elasticsearch.client.Client;
-import org.elasticsearch.client.transport.TransportClient;
-import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
-import java.net.InetSocketAddress;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ElasticsearchConversationRepository implements ConversationRepository {
@@ -32,12 +29,12 @@ public class ElasticsearchConversationRepository implements ConversationReposito
 	private ElasticSearchModelMapper mapper;
 
 	public ElasticsearchConversationRepository(Client client, Integer maxMessages,
-			AddressedMessageFactory addressedMessageFactory, ConversationIdGenerationStrategy idGenerator,
+			ConversationIdGenerationStrategy idGenerator,
 			CounterDAO unreadMessagesDAO) {
 
 		this.unreadMessagesDAO = unreadMessagesDAO;
 		this.dao = new ElasticsearchDAO(client, "crack", maxMessages);
-		this.mapper = new ElasticSearchModelMapper(addressedMessageFactory);
+		this.mapper = new ElasticSearchModelMapper();
 		this.idGenerator = idGenerator;
 	}
 
@@ -88,12 +85,6 @@ public class ElasticsearchConversationRepository implements ConversationReposito
 		return mapper.fromElasticSearchConversation(dao.getConversationById(conversationId));
 	}
 
-	private List<Conversation> getConversationsById(List<String> conversationIds) throws
-			ConversationNotFoundException {
-		List<ElasticsearchConversation> conversations = dao.getConversationsById(conversationIds);
-		return conversations.stream().map(mapper::fromElasticSearchConversation).collect(Collectors.toList());
-	}
-
 	@Override
 	public Conversation getConversationWithUsers(Set<Long> userIds) throws ConversationNotFoundException {
 		ElasticsearchConversation conversation = dao.getConversationWithUsers(userIds);
@@ -118,14 +109,6 @@ public class ElasticsearchConversationRepository implements ConversationReposito
 				  .filter(elasticConversation -> elasticConversation.hasDeleted(userId + application))
 				  .map(mapper::fromElasticSearchConversation)
 				  .collect(Collectors.toList());
-	}
-
-	@Override
-	public List<AddressedMessage> getAddressedMessages(List<Long> userIds, Date date, String application) {
-		ElasticsearchConversation conversation = dao.getConversationWithUsers(Sets.newHashSet(userIds));
-		List<ElasticSearchMessage> addressedMessages = dao.getAddressedMessages(conversation.getId(), userIds.get(0),
-																				date, application);
-		return mapper.buildAddressedMessages(conversation, addressedMessages);
 	}
 
 	@Override
@@ -203,43 +186,10 @@ public class ElasticsearchConversationRepository implements ConversationReposito
 
 	}
 
-	/*TODO poli: El limite de mensajes no debería manejarse aca. Habría que filtrar la lista de conversaciones en
-	  el método de chatHeaders, pero para eso habria que crear un retrocompatibilityService y dejar de hacer toda
-	  la logica en el adapter (por ahora esta comentado)*/
-	@Override
-	public Map<String, AddressedMessage> getLastMessages(Long userId, List<String> conversationIds, String application)
-			throws ConversationNotFoundException {
-		Map<String, AddressedMessage> response = new HashMap<>();
-		List<Conversation> conversations = getConversationsById(conversationIds);
-		List<ElasticsearchConversation> activeConversations = dao.getActiveUserConversations(conversations, userId,
-																							 application);
-
-		activeConversations = activeConversations.stream()
-												 .sorted((o1, o2) -> o2.getLastActivity()
-																	   .compareTo(o1.getLastActivity()))
-												 .limit(250)
-												 .collect(Collectors.toList());
-
-		List<Conversation> activeUserConversations = activeConversations.stream()
-																		.map(mapper::fromElasticSearchConversation)
-																		.collect(Collectors.toList());
-		Map<Conversation, Optional<ElasticSearchMessage>> lastMessagesOptional = dao.getLastMessages(
-				activeUserConversations, application, userId);
-
-		lastMessagesOptional.entrySet()
-							.stream()
-							.forEach(conversationOptionLastMessage -> response.put(
-									conversationOptionLastMessage.getKey().getId(),
-									mapper.toAddressedMessage((conversationOptionLastMessage.getValue().get()),
-															  conversationOptionLastMessage.getKey())));
-
-		return response;
-	}
-
 	@Override
 	public boolean isAlreadyAcknowledged(String conversationId, String messageId, IndividualMessageReceipt receipt) {
 		return dao.isAlreadyAcknowledged(conversationId, messageId,
-										 mapper.buildElasticsearchIndividualMessageReceipt(receipt));
+				mapper.buildElasticsearchIndividualMessageReceipt(receipt));
 	}
 
 	@Override
@@ -250,13 +200,6 @@ public class ElasticsearchConversationRepository implements ConversationReposito
 	@Override
 	public Map<String, Long> getUnreadMessagesCount(List<String> conversations, Long userId, String application) {
 		return unreadMessagesDAO.getUnreadMessages(userId, conversations, application);
-	}
-
-	private AddressedMessage getLastMessage(String conversationId, String app) throws ConversationNotFoundException {
-		Conversation conversation = getConversationWithId(conversationId);
-		Optional<ElasticSearchMessage> lastMessageOptional = dao.getLastMessage(conversationId, app);
-		return lastMessageOptional.map(lastMessage -> mapper.toAddressedMessage(lastMessage, conversation))
-								  .orElse(NullAddressedMessage.create(conversation));
 	}
 
 	@Override

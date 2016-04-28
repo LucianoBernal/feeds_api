@@ -1,17 +1,10 @@
 package com.etermax.conversations.test.unit.dto;
 
 import com.etermax.conversations.dto.HasMoreDTO;
-import com.etermax.conversations.error.InvalidMessageException;
-import com.etermax.conversations.error.InvalidUserException;
-import com.etermax.conversations.model.ConversationMessage;
-import com.etermax.conversations.model.ConversationTextMessage;
 import com.etermax.conversations.model.HasMore;
-import com.etermax.conversations.model.User;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

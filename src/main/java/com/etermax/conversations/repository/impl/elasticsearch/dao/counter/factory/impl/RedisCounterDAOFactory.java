@@ -1,13 +1,9 @@
 package com.etermax.conversations.repository.impl.elasticsearch.dao.counter.factory.impl;
 
 import com.codahale.metrics.health.HealthCheck;
-import com.etermax.conversations.application.healthcheck.RedisCounterHealthCheck;
 import com.etermax.conversations.repository.impl.elasticsearch.dao.counter.CounterDAO;
 import com.etermax.conversations.repository.impl.elasticsearch.dao.counter.factory.CounterDAOFactory;
 import com.etermax.conversations.repository.impl.elasticsearch.dao.counter.impl.RedisCounterDAO;
-import com.etermax.conversations.retrocompatibility.migration.repository.MigrationRepository;
-import com.etermax.conversations.retrocompatibility.migration.repository.impl.RedisMigrationRepository;
-import com.etermax.jvon.core.JvonPreProccessor;
 import com.etermax.vedis.connection.VedisConnectionConfiguration;
 import com.etermax.vedis.connection.VedisConnectionManager;
 import com.etermax.vedis.connection.exception.InvalidConnectionDataException;

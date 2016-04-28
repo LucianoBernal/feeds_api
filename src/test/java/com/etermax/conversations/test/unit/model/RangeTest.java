@@ -2,11 +2,9 @@ package com.etermax.conversations.test.unit.model;
 
 import com.etermax.conversations.error.InvalidRangeException;
 import com.etermax.conversations.model.Range;
-import org.assertj.core.api.ThrowableAssert;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class RangeTest {
 	@Test

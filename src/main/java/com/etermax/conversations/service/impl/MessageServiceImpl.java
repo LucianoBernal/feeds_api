@@ -2,37 +2,32 @@ package com.etermax.conversations.service.impl;
 
 import com.etermax.conversations.error.*;
 import com.etermax.conversations.factory.ConversationMessageFactory;
-import com.etermax.conversations.model.*;
-import com.etermax.conversations.notification.model.MessageNotification;
-import com.etermax.conversations.notification.service.NotificationService;
+import com.etermax.conversations.model.Conversation;
+import com.etermax.conversations.model.ConversationMessage;
+import com.etermax.conversations.model.Event;
+import com.etermax.conversations.model.EventData;
 import com.etermax.conversations.repository.ConversationRepository;
-import com.etermax.conversations.retrocompatibility.service.RetrocompatibilityMessageService;
 import com.etermax.conversations.service.ConversationService;
 import com.etermax.conversations.service.EventService;
 import com.etermax.conversations.service.MessageService;
-import com.google.common.collect.Sets;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.Set;
 
 public class MessageServiceImpl implements MessageService {
 	private final ConversationMessageFactory conversationMessageFactory;
 	private ConversationRepository conversationRepository;
 	private ConversationService conversationService;
 	private EventService eventService;
-	private NotificationService notificationService;
-	private RetrocompatibilityMessageService retrocompatibilityMessageService;
 
 	public MessageServiceImpl(ConversationRepository conversationRepository,
 			ConversationMessageFactory conversationMessageFactory, ConversationService conversationService,
-			EventService eventService, NotificationService notificationService,
-			RetrocompatibilityMessageService retrocompatibilityMessageService) {
+			EventService eventService) {
 		this.conversationRepository = conversationRepository;
 		this.conversationMessageFactory = conversationMessageFactory;
 		this.conversationService = conversationService;
 		this.eventService = eventService;
-		this.notificationService = notificationService;
-		this.retrocompatibilityMessageService = retrocompatibilityMessageService;
 	}
 
 	@Override
@@ -42,7 +37,6 @@ public class MessageServiceImpl implements MessageService {
 			Conversation conversation = conversationRepository.getConversationWithId(conversationId);
 			checkUserIsInConversation(conversationMessage.getSender().getId(), conversation);
 			ConversationMessage messageSent = conversationRepository.saveMessage(conversationMessage, conversation);
-			sendNewMessageNotification(conversation, messageSent);
 			return messageSent;
 		} catch (ConversationNotFoundException | UserNotInConversationException e) {
 			throw new SaveMessageException(e);
@@ -52,38 +46,6 @@ public class MessageServiceImpl implements MessageService {
 	private void checkUserIsInConversation(Long id, Conversation conversation) {
 		if (!conversation.getUserIds().contains(id)) {
 			throw new UserNotInConversationException();
-		}
-	}
-
-	@Override
-	public AddressedMessage saveRetrocompatibilityMessage(AddressedMessage addressedMessage)
-			throws SaveMessageException {
-		Set<Long> participants = new HashSet<>();
-		participants.add(addressedMessage.getSender().getId());
-		Long receiver = addressedMessage.getUser().getId();
-		participants.add(receiver);
-		Conversation conversation = getOrCreateConversationWithUsers(participants);
-		User sender = addressedMessage.getSender();
-		try {
-			ConversationMessage conversationMessage = conversationMessageFactory.createTextConversationMessage(
-					addressedMessage.getText(), sender, conversation.getId(), addressedMessage.getApplication(),
-					addressedMessage.getBlocked());
-			ConversationMessage savedConversationMessage = saveMessage(conversationMessage, conversation.getId());
-			addressedMessage.setId(savedConversationMessage.getId());
-			retrocompatibilityMessageService.sendRetrocompatibilityMessage(savedConversationMessage, receiver);
-			return addressedMessage;
-		} catch (ModelException e) {
-			throw new ServerException(e, "Unable to create message.");
-		}
-	}
-
-	@Override
-	public Map<String, AddressedMessage> getLastMessages(Long userId, List<String> conversationIds, String application)
-			throws GetMessageException {
-		try {
-			return conversationRepository.getLastMessages(userId, conversationIds, application);
-		} catch (ConversationNotFoundException e) {
-			throw new GetMessageException(e);
 		}
 	}
 
@@ -120,30 +82,6 @@ public class MessageServiceImpl implements MessageService {
 		}
 	}
 
-	@Override
-	public List<AddressedMessage> getRetrocompatibilityUserMessages(List<Long> userIds, String dateString,
-			String application) throws GetUserMessagesException {
-		Date date = getDate(dateString);
-		try {
-			String conversationId = conversationRepository.getConversationWithUsers(Sets.newHashSet(userIds)).getId();
-			conversationRepository.resetRead(conversationId, application, userIds.get(0));
-			return conversationRepository.getAddressedMessages(userIds, date, application)
-										 .stream()
-										 .sorted((o1, o2) -> o1.getDate().compareTo(o2.getDate()))
-										 .collect(Collectors.toList());
-		} catch (MessageNotFoundException e) {
-			throw new GetUserMessagesException(e);
-		} catch (ConversationNotFoundException e){
-			return new ArrayList<>();
-		}
-	}
-
-	public void sendNewMessageNotification(Conversation conversation, ConversationMessage message) {
-		if (!message.getIgnored()) {
-			notificationService.send(new MessageNotification(conversation, message));
-		}
-	}
-
 	private Date getDate(String dateString) throws GetUserMessagesException {
 		if (dateString == null) {
 			return new Date(0L);
@@ -155,5 +93,4 @@ public class MessageServiceImpl implements MessageService {
 			throw new GetUserMessagesException(e);
 		}
 	}
-
 }

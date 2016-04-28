@@ -7,21 +7,16 @@ import com.etermax.conversations.error.*;
 import com.etermax.conversations.model.ConversationHistory;
 import com.etermax.conversations.model.ConversationSync;
 import com.etermax.conversations.model.Range;
-import com.etermax.conversations.retrocompatibility.migration.domain.MigrationResult;
-import com.etermax.conversations.retrocompatibility.migration.service.MigrationService;
 import com.etermax.conversations.service.SynchronizationService;
 
-import javax.management.InvalidApplicationException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SynchronizationAdapterImpl implements SynchronizationAdapter {
 	private SynchronizationService synchronizationService;
-	private MigrationService migrationService;
 
-	public SynchronizationAdapterImpl(SynchronizationService synchronizationService, MigrationService migrationService) {
+	public SynchronizationAdapterImpl(SynchronizationService synchronizationService) {
 		this.synchronizationService = synchronizationService;
-		this.migrationService = migrationService;
 	}
 
 	@Override
@@ -53,19 +48,11 @@ public class SynchronizationAdapterImpl implements SynchronizationAdapter {
 			throw new ClientException(new Exception("User id cannot be null"), 400);
 		}
 		try {
-			// MIGRATION
-
-			List<MigrationResult> migrationResults = migrationService.migrateConversations(userId);
-			if(!migrationResults.isEmpty()){
-				Thread.sleep(1000l);
-			}
 			List<ConversationSync> userData = synchronizationService.getConversationSync(userId, dateString, application);
 			userData.forEach(userDataSync -> displayData.add(new SyncDTO(userDataSync)));
 			return displayData;
 		}catch (GetUserDataException e){
 			throw new ClientException(e, 400);
-		} catch (InterruptedException e) {
-			throw new ServerException(e, "");
 		}
 	}
 }

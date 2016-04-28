@@ -7,20 +7,17 @@ import com.etermax.conversations.service.MessageService;
 public class MessageAdapterFactory {
 	private MessageServiceFactory messageServiceFactory;
 	private ConversationMessageFactory conversationMessageFactory;
-	private AddressedMessageFactory addressedMessageFactory;
 	private UserFactory userFactory;
 
 	public MessageAdapterFactory(MessageServiceFactory messageServiceFactory,
-			ConversationMessageFactory conversationMessageFactory, AddressedMessageFactory addressedMessageFactory,
-			UserFactory userFactory) {
+			ConversationMessageFactory conversationMessageFactory, UserFactory userFactory) {
 		this.messageServiceFactory = messageServiceFactory;
 		this.conversationMessageFactory = conversationMessageFactory;
-		this.addressedMessageFactory = addressedMessageFactory;
 		this.userFactory = userFactory;
 	}
 
 	public MessageAdapter createMessageAdapter(){
 		MessageService messageService = messageServiceFactory.createMessageService();
-		return new MessageAdapterImpl(messageService, conversationMessageFactory, addressedMessageFactory, userFactory);
+		return new MessageAdapterImpl(messageService, conversationMessageFactory, userFactory);
 	}
 }

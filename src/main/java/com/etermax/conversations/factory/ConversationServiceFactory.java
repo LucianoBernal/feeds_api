@@ -10,23 +10,20 @@ public class ConversationServiceFactory {
 	private ConversationFactory conversationFactory;
 	private UserFactory userFactory;
 	private EventServiceFactory eventServiceFactory;
-	private NotificationServiceFactory notificationServiceFactory;
 
 	public ConversationServiceFactory(ConversationRepositoryFactory conversationRepositoryFactory,
 			ConversationFactory conversationFactory, UserFactory userFactory, EventServiceFactory
-			eventServiceFactory, NotificationServiceFactory notificationServiceFactory) {
+			eventServiceFactory) {
 		this.conversationRepositoryFactory = conversationRepositoryFactory;
 		this.conversationFactory = conversationFactory;
 		this.userFactory = userFactory;
 		this.eventServiceFactory = eventServiceFactory;
-		this.notificationServiceFactory = notificationServiceFactory;
 	}
 
 	public ConversationService createConversationService() {
 		ConversationComparator conversationComparator = new ConversationComparator();
 		ConversationRepository conversationRepository = conversationRepositoryFactory.createRepository();
 		return new ConversationServiceImpl(conversationRepository, conversationFactory, conversationComparator,
-										   userFactory, eventServiceFactory.createEventService(),
-										   notificationServiceFactory.createNotificationService());
+										   userFactory, eventServiceFactory.createEventService());
 	}
 }

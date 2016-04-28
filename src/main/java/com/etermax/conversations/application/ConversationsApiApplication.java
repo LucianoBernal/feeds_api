@@ -11,21 +11,7 @@ import com.etermax.conversations.dto.AppInfoDTO;
 import com.etermax.conversations.factory.*;
 import com.etermax.conversations.metrics.MetricsPublisher;
 import com.etermax.conversations.metrics.configuration.MetricsConfiguration;
-import com.etermax.conversations.repository.ConversationRepository;
 import com.etermax.conversations.resource.*;
-import com.etermax.conversations.retrocompatibility.adapter.RetrocompatibilityConversationAdapter;
-import com.etermax.conversations.retrocompatibility.adapter.RetrocompatibilityMessageAdapter;
-import com.etermax.conversations.retrocompatibility.adapter.RetrocompatibilityUserAdapter;
-import com.etermax.conversations.retrocompatibility.factory.RetrocompatibilityMessageServiceFactory;
-import com.etermax.conversations.retrocompatibility.migration.repository.MigrationRepository;
-import com.etermax.conversations.retrocompatibility.migration.service.MigrationService;
-import com.etermax.conversations.retrocompatibility.resource.RetrocompatibilityChatHeadersResource;
-import com.etermax.conversations.retrocompatibility.resource.RetrocompatibilityConversationDeletionResource;
-import com.etermax.conversations.retrocompatibility.resource.RetrocompatibilityMessageDeletionResource;
-import com.etermax.conversations.retrocompatibility.resource.RetrocompatibilityMessagesResource;
-import com.etermax.conversations.retrocompatibility.service.RetrocompatibilityConversationService;
-import com.etermax.conversations.retrocompatibility.service.RetrocompatibilityMessageService;
-import com.etermax.conversations.retrocompatibility.service.RetrocompatibilityUserService;
 import com.etermax.conversations.service.ConversationService;
 import com.etermax.conversations.service.MessageService;
 import com.etermax.jvon.core.JvonPreProccessor;
@@ -65,26 +51,13 @@ public class ConversationsApiApplication extends Application<AppConfiguration> {
 		MetricsConfiguration metricsConfiguration = configuration.getMetricsConfiguration();
 		MetricsPublisher metricsPublisher = metricsConfiguration.createMetricsPublisher();
 
-		RetrocompatibilityUserService retrocompatibilityUserService = new RetrocompatibilityUserService(
-				configuration.getUsersApiUrl());
-		RetrocompatibilityUserAdapter userAdapter = new RetrocompatibilityUserAdapter(retrocompatibilityUserService);
 		ConversationService conversationService = createConversationServiceFactory(configuration)
 				.createConversationService();
-		RetrocompatibilityConversationService retrocompatibilityConversationService = new RetrocompatibilityConversationService(configuration.getConversationRepositoryFactory().createRepository());
-		RetrocompatibilityConversationAdapter retrocompatibilityAdapter = new RetrocompatibilityConversationAdapter(
-				createMigrationService(configuration), conversationAdapter, messageAdapter, userAdapter, conversationService, retrocompatibilityConversationService);
-		environment.jersey().register(new RetrocompatibilityChatHeadersResource(retrocompatibilityAdapter));
-		environment.jersey().register(new RetrocompatibilityMessagesResource(retrocompatibilityAdapter, metricsPublisher));
-		environment.jersey().register(new RetrocompatibilityConversationDeletionResource(retrocompatibilityAdapter));
 
 		MessageService messageService = createMessageService(configuration);
-		RetrocompatibilityMessageAdapter retrocompatibilityMessageAdapter = new RetrocompatibilityMessageAdapter(
-				conversationService, messageService);
-		environment.jersey().register(new RetrocompatibilityMessageDeletionResource(retrocompatibilityMessageAdapter));
 
 		environment.jersey().register(new ConversationMessagesResource(messageAdapter, metricsPublisher));
 		environment.jersey().register(new ConversationMessageDeletionResource(messageAdapter));
-		environment.jersey().register(new MessagesResource(messageAdapter));
 
 		environment.jersey().register(new SyncResource(synchronizationAdapter));
 		environment.jersey().register(new HistoryResource(synchronizationAdapter));
@@ -111,15 +84,10 @@ public class ConversationsApiApplication extends Application<AppConfiguration> {
 		ConversationMessageFactory conversationMessageFactory = new ConversationMessageFactory();
 		ConversationServiceFactory conversationServiceFactory = createConversationServiceFactory(configuration);
 		EventServiceFactory eventServiceFactory = new EventServiceFactory(conversationRepositoryFactory);
-		MessageServiceFactory messageServiceFactory = createMessageServiceFactory(configuration,
-				conversationRepositoryFactory, conversationMessageFactory, conversationServiceFactory, eventServiceFactory);
+		MessageServiceFactory messageServiceFactory = createMessageServiceFactory(
+				conversationRepositoryFactory, conversationMessageFactory, conversationServiceFactory,
+				eventServiceFactory);
 		return messageServiceFactory.createMessageService();
-	}
-
-	public MigrationService createMigrationService(AppConfiguration configuration) {
-		ConversationRepository newRepo = configuration.getConversationRepositoryFactory().createRepository();
-		MigrationRepository oldRepo = configuration.getMigrationRepositoryFactory().createRepository();
-		return new MigrationService(oldRepo, newRepo);
 	}
 
 	private SynchronizationAdapter createSyncronizationAdapter(AppConfiguration configuration) {
@@ -127,36 +95,29 @@ public class ConversationsApiApplication extends Application<AppConfiguration> {
 		SynchronizationServiceFactory synchronizationServiceFactory = new SynchronizationServiceFactory(
 				conversationRepositoryFactory);
 		SynchronizationAdapterFactory synchronizationAdapterFactory = new SynchronizationAdapterFactory(
-				synchronizationServiceFactory, createMigrationService(configuration));
+				synchronizationServiceFactory);
 		return synchronizationAdapterFactory.createSyncronizationAdapter();
 	}
 
 	private MessageAdapter createMessageAdapter(AppConfiguration configuration) {
 		ConversationRepositoryFactory conversationRepositoryFactory = configuration.getConversationRepositoryFactory();
 		ConversationMessageFactory conversationMessageFactory = new ConversationMessageFactory();
-		AddressedMessageFactory addressedMessageFactory = new AddressedMessageFactory();
 		UserFactory userFactory = new UserFactory();
 		ConversationServiceFactory conversationServiceFactory = createConversationServiceFactory(configuration);
 		EventServiceFactory eventServiceFactory = new EventServiceFactory(conversationRepositoryFactory);
-		MessageServiceFactory messageServiceFactory = createMessageServiceFactory(configuration,
+		MessageServiceFactory messageServiceFactory = createMessageServiceFactory(
 				conversationRepositoryFactory, conversationMessageFactory, conversationServiceFactory,
 				eventServiceFactory);
 		MessageAdapterFactory messageAdapterFactory = new MessageAdapterFactory(messageServiceFactory,
-				conversationMessageFactory, addressedMessageFactory, userFactory);
+				conversationMessageFactory, userFactory);
 		return messageAdapterFactory.createMessageAdapter();
 	}
 
-	private MessageServiceFactory createMessageServiceFactory(AppConfiguration configuration,
-			ConversationRepositoryFactory conversationRepositoryFactory,
+	private MessageServiceFactory createMessageServiceFactory(ConversationRepositoryFactory conversationRepositoryFactory,
 			ConversationMessageFactory conversationMessageFactory,
 			ConversationServiceFactory conversationServiceFactory, EventServiceFactory eventServiceFactory) {
-		RetrocompatibilityMessageServiceFactory retrocompatibilityMessageServiceFactory = configuration.getRetrocompatibilityMessageServiceFactory();
-		RetrocompatibilityMessageService retrocompatibilityMessageService = retrocompatibilityMessageServiceFactory
-				.createMessageService();
 		return new MessageServiceFactory(conversationMessageFactory, conversationRepositoryFactory,
-				conversationServiceFactory, eventServiceFactory,
-				new NotificationServiceFactory(configuration.getNotificationSenderFactory()),
-				retrocompatibilityMessageService);
+				conversationServiceFactory, eventServiceFactory);
 	}
 
 	private ReceiptAdapter createReceiptAdapter(AppConfiguration configuration) {
@@ -179,8 +140,7 @@ public class ConversationsApiApplication extends Application<AppConfiguration> {
 		UserFactory userFactory = new UserFactory();
 		ConversationRepositoryFactory conversationRepositoryFactory = configuration.getConversationRepositoryFactory();
 		return new ConversationServiceFactory(conversationRepositoryFactory, conversationFactory, userFactory,
-				new EventServiceFactory(conversationRepositoryFactory),
-				new NotificationServiceFactory(configuration.getNotificationSenderFactory()));
+				new EventServiceFactory(conversationRepositoryFactory));
 	}
 
 	@Override

@@ -6,8 +6,6 @@ import com.etermax.conversations.model.ReadType;
 import com.etermax.conversations.model.ReceiptType;
 import com.etermax.conversations.model.ReceivedType;
 
-import java.util.Date;
-
 public class IndividualMessageReceiptFactory {
 	public IndividualMessageReceipt createIndividualMessageReceipt(String stringType, Long userId)
 			throws ModelException {

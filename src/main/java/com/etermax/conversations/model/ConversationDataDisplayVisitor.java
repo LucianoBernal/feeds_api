@@ -1,22 +1,13 @@
 package com.etermax.conversations.model;
 
-import com.etermax.conversations.dto.*;
+import com.etermax.conversations.dto.ConversationDataDTO;
+import com.etermax.conversations.dto.EventDTO;
+import com.etermax.conversations.dto.MessageReceiptDTO;
+import com.etermax.conversations.dto.TextMessageDisplayDTO;
 
 public class ConversationDataDisplayVisitor {
 	public ConversationDataDTO visit(ConversationTextMessage conversationTextMessage) {
 		return new TextMessageDisplayDTO(conversationTextMessage);
-	}
-
-	public ConversationDataDTO visit(ConversationAudioMessage conversationAudioMessage){
-		return new AudioMessageDisplayDTO(conversationAudioMessage);
-	}
-
-	public ConversationDataDTO visit(ConversationVideoMessage conversationVideoMessage){
-		return new VideoMessageDisplayDTO(conversationVideoMessage);
-	}
-
-	public ConversationDataDTO visit(ConversationImageMessage conversationImageMessage) {
-		return new ImageMessageDisplayDTO(conversationImageMessage);
 	}
 
 	public ConversationDataDTO visit(Event event) {

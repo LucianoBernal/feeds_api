@@ -4,14 +4,9 @@ import com.etermax.conversations.model.MessageVisitor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.wordnik.swagger.annotations.ApiModelProperty;
-import com.wordnik.swagger.annotations.ApiParam;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "message_type")
-@JsonSubTypes({ @JsonSubTypes.Type(value = TextMessageCreationDTO.class, name = "text"),
-		@JsonSubTypes.Type(value = AudioMessageCreationDTO.class, name = "audio"),
-		@JsonSubTypes.Type(value = ImageMessageCreationDTO.class, name = "image"),
-		@JsonSubTypes.Type(value = VideoMessageCreationDTO.class, name = "video") })
+@JsonSubTypes({ @JsonSubTypes.Type(value = TextMessageCreationDTO.class, name = "text")})
 public class BaseMessageCreationDTO {
 
 	@JsonProperty("message_type") private String messageType;

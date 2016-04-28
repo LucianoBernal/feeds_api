@@ -4,14 +4,12 @@ import com.etermax.conversations.error.ConversationNotFoundException;
 import com.etermax.conversations.error.InvalidEventException;
 import com.etermax.conversations.error.MessageNotFoundException;
 import com.etermax.conversations.error.ModelException;
-import com.etermax.conversations.factory.AddressedMessageFactory;
 import com.etermax.conversations.model.*;
 import com.etermax.conversations.repository.ConversationRepository;
 import com.etermax.conversations.repository.impl.memory.domain.*;
 import com.etermax.conversations.repository.impl.memory.filter.*;
 import com.etermax.conversations.repository.impl.memory.mapper.MemoryRepositoryMapper;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -23,7 +21,6 @@ public class MemoryConversationRepository implements ConversationRepository {
 	private List<Conversation> conversations;
 	private Map<String, List<MemoryConversationData>> conversationUserData;
 	private Long conversationId;
-	private AddressedMessageFactory addressedMessageFactory;
 	private Integer maxConversations;
 	private Integer maxSyncSize;
 	private List<MemoryUnreadMessages> conversationUserUnreadMessages;
@@ -33,14 +30,13 @@ public class MemoryConversationRepository implements ConversationRepository {
 	private MemoryRepositoryMapper memoryMapper;
 	private ConversationComparator conversationComparator;
 
-	public MemoryConversationRepository(AddressedMessageFactory addressedMessageFactory, Integer maxConversations,
+	public MemoryConversationRepository(Integer maxConversations,
 			Integer maxSyncSize) {
 		this.maxConversations = maxConversations;
 		this.maxSyncSize = maxSyncSize;
 		conversations = new ArrayList<>();
 		conversationUserData = new HashMap<>();
 		conversationId = 1l;
-		this.addressedMessageFactory = addressedMessageFactory;
 		conversationComparator = new ConversationComparator();
 		conversationUserUnreadMessages = new ArrayList<>();
 		conversationMessageId = new HashMap<>();
@@ -103,24 +99,6 @@ public class MemoryConversationRepository implements ConversationRepository {
 	@Override
 	public List<Conversation> getUserActiveConversations(Long userId, String application) {
 		return conversations.stream().filter(getConversationPredicate(userId)).collect(Collectors.toList());
-	}
-
-	@Override
-	public List<AddressedMessage> getAddressedMessages(List<Long> userIds, Date date, String application)
-			throws MessageNotFoundException {
-		try {
-			Conversation conversationWithUsers = getConversationWithUsers(Sets.newHashSet(userIds));
-			List<MemoryConversationData> memoryConversationDataList = conversationUserData
-					.get(conversationWithUsers.getId());
-			Long userId = userIds.get(0);
-			List<ConversationMessage> conversationMessages = getUserMessages(date, memoryConversationDataList, userId,
-					application);
-			return conversationMessages.stream()
-					.map(message -> addressedMessageFactory.createAddressedMessage(message, conversationWithUsers))
-					.collect(Collectors.toList());
-		} catch (ConversationNotFoundException e) {
-			return new ArrayList<>();
-		}
 	}
 
 	private List<ConversationMessage> getUserMessages(Date date,
@@ -259,15 +237,6 @@ public class MemoryConversationRepository implements ConversationRepository {
 	@Override
 	public void flush() {
 
-	}
-
-	@Override
-	public Map<String, AddressedMessage> getLastMessages(Long userId, List<String> conversationIds, String app)
-			throws ConversationNotFoundException {
-
-		Map<String, AddressedMessage> result = new HashMap<>();
-		conversationIds.forEach(conversationId -> result.put(conversationId, getLastMessage(conversationId, app, userId)));
-		return result;
 	}
 
 	@Override
@@ -572,60 +541,6 @@ public class MemoryConversationRepository implements ConversationRepository {
 			unreadMessages.setUserUnreadMessages(receiverId, unread + 1);
 		}
 		conversationUserUnreadMessages.add(unreadMessages);
-	}
-
-	private AddressedMessage getLastMessage(String conversationId, String app, Long userId)
-			throws ConversationNotFoundException {
-		Conversation conversation = getConversationWithId(conversationId);
-		List<MemoryConversationData> memoryConversationDataList = this.conversationUserData.get(conversationId);
-
-		long lastDeletionDate;
-		List<MemoryConversationDeletion> possibleDeletionDate = conversationDeletionDates.stream()
-				.filter(conversationDeletion -> conversationDeletion.getApp().equals(app) &&
-						conversationDeletion.getUserId().equals(userId) &&
-						conversationDeletion.getConversationId().equals(conversationId)).collect(Collectors.toList());
-		if (possibleDeletionDate.isEmpty()) {
-			lastDeletionDate = 0;
-		} else {
-			lastDeletionDate = possibleDeletionDate.get(0).getDeletionDate().getTime();
-		}
-
-		return memoryConversationDataList.stream()
-										 .filter(message -> message.getApplication().equals(app))
-										 .filter(message -> message instanceof MemoryConversationMessage)
-										 .map(message -> (MemoryConversationMessage) message)
-										 .filter(memoryMessage -> !memoryMessage.getIgnoredBy().contains(userId))
-										 .filter(memoryMessage -> memoryMessage.getDeletedBy().contains(userId))
-										 .map(MemoryConversationMessage::getConversationMessage)
-										 .filter(message -> message instanceof ConversationTextMessage)
-										 .map(message -> (ConversationTextMessage) message)
-									     .filter(message2 -> message2.getDate().getTime() > lastDeletionDate)
-										 .sorted((o1, o2) -> o1.getDate().compareTo(o2.getDate()))
-										 .reduce((current, last) -> last)
-										 .map(lastMessage -> createAddressedMessage(lastMessage, conversation))
-										 .orElse(createDefaultAddressedMessage(app, conversation));
-	}
-
-	private AddressedMessage createDefaultAddressedMessage(String app, Conversation conversation) {
-		ArrayList<User> userList = new ArrayList<>(conversation.getUsers());
-		return new AddressedMessage("", userList.get(1), userList.get(0), new Date(), app, false);
-	}
-
-	private AddressedMessage createAddressedMessage(ConversationTextMessage conversationTextMessage,
-			Conversation conversation) {
-		try {
-			String message = conversationTextMessage.getText();
-			User sender = conversationTextMessage.getSender();
-			String application = conversationTextMessage.getApplication();
-			Boolean blocked = conversationTextMessage.getIgnored();
-			List<User> users = conversation.getUsers().stream().filter(user -> !user.equals(sender))
-					.collect(Collectors.toList());
-
-			User receiver = users.get(0);
-			return addressedMessageFactory.createAddressedMessage(message, sender, receiver, application, blocked);
-		} catch (Exception e) {
-			return createDefaultAddressedMessage(conversationTextMessage.getApplication(), conversation);
-		}
 	}
 
 }

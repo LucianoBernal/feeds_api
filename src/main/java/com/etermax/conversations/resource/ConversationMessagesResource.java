@@ -3,7 +3,6 @@ package com.etermax.conversations.resource;
 import com.etermax.conversations.adapter.MessageAdapter;
 import com.etermax.conversations.dto.BaseMessageCreationDTO;
 import com.etermax.conversations.dto.ConversationDataDTO;
-import com.etermax.conversations.metrics.GraphiteNotificationMetricPublisher;
 import com.etermax.conversations.metrics.MetricContainer;
 import com.etermax.conversations.metrics.MetricsPublisher;
 import com.wordnik.swagger.annotations.*;

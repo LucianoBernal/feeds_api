@@ -22,8 +22,6 @@ public interface ConversationRepository {
 
 	List<Conversation> getUserActiveConversations(Long userId, String application);
 
-	List<AddressedMessage> getAddressedMessages(List<Long> userIds, Date date, String application);
-
 	void deleteMessage(String conversationId, String messageId, Long userId);
 
 	ConversationHistory getConversationHistory(String conversationId, Range range, Long userId, String application);
@@ -44,8 +42,6 @@ public interface ConversationRepository {
 	void clearRepository();
 
 	void flush();
-
-	Map<String, AddressedMessage> getLastMessages(Long userId, List<String> conversationIds, String application);
 
 	List<ConversationMessage> saveMessages(List<ConversationMessage> messages);
 

@@ -6,7 +6,6 @@ import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.ScheduledReporter;
 import com.codahale.metrics.graphite.Graphite;
 import com.codahale.metrics.graphite.GraphiteReporter;
-import com.etermax.conversations.metrics.configuration.GraphiteMetricsConfiguration;
 
 import java.net.InetSocketAddress;
 import java.util.concurrent.TimeUnit;

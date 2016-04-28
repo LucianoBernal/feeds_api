@@ -5,7 +5,6 @@ import com.etermax.conversations.dto.ConversationCreationDTO;
 import com.etermax.conversations.dto.ConversationDisplayDTO;
 import com.etermax.conversations.dto.ConversationMessageDeletionDTO;
 import com.etermax.conversations.dto.DeleteConversationDisplayDTO;
-import com.etermax.conversations.dto.ConversationMessageDeletionDTO;
 import com.etermax.conversations.error.*;
 import com.etermax.conversations.model.Conversation;
 import com.etermax.conversations.service.ConversationService;

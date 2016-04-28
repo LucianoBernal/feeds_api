@@ -1,11 +1,9 @@
 package com.etermax.conversations.test.integration;
 
 import com.etermax.conversations.adapter.MessageAdapter;
-import com.etermax.conversations.dto.AddressedMessageCreationDTO;
 import com.etermax.conversations.error.ClientException;
 import com.etermax.conversations.error.InvalidDTOException;
 import com.etermax.conversations.factory.ConversationRepositoryFactory;
-import com.etermax.conversations.resource.MessagesResource;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.After;
 import org.junit.Before;

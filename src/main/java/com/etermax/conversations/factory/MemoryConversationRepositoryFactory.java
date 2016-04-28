@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class MemoryConversationRepositoryFactory implements ConversationRepositoryFactory {
 
-	private AddressedMessageFactory addressedMessageFactory;
-
 	@JsonProperty("max_conversations")
 	private Integer maxConversations;
 
@@ -18,20 +16,14 @@ public class MemoryConversationRepositoryFactory implements ConversationReposito
 
 	private ConversationRepository conversationRepository;
 
-	public MemoryConversationRepositoryFactory() {
-		this.addressedMessageFactory = new AddressedMessageFactory();
-	}
-
-	public MemoryConversationRepositoryFactory(AddressedMessageFactory addressedMessageFactory,
-			Integer maxConversations, Integer maxMessages) {
+	public MemoryConversationRepositoryFactory(	Integer maxConversations, Integer maxMessages) {
 		this.maxConversations = maxConversations;
 		this.maxMessages = maxMessages;
-		this.addressedMessageFactory = addressedMessageFactory;
 	}
 
 	public ConversationRepository createRepository() {
 		if(conversationRepository == null){
-			conversationRepository = new MemoryConversationRepository(addressedMessageFactory, maxConversations, maxMessages);
+			conversationRepository = new MemoryConversationRepository(maxConversations, maxMessages);
 		}
 		return conversationRepository;
 	}

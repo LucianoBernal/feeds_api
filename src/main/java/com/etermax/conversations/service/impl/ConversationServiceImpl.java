@@ -4,11 +4,9 @@ import com.etermax.conversations.error.*;
 import com.etermax.conversations.factory.ConversationFactory;
 import com.etermax.conversations.factory.UserFactory;
 import com.etermax.conversations.model.*;
-import com.etermax.conversations.notification.service.NotificationService;
 import com.etermax.conversations.repository.ConversationRepository;
 import com.etermax.conversations.service.ConversationService;
 import com.etermax.conversations.service.EventService;
-import org.assertj.core.util.Lists;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -22,17 +20,15 @@ public class ConversationServiceImpl implements ConversationService {
 	private ConversationComparator conversationComparator;
 	private UserFactory userFactory;
 	private EventService eventService;
-	private NotificationService notificationService;
 
 	public ConversationServiceImpl(ConversationRepository conversationRepository,
 			ConversationFactory conversationFactory, ConversationComparator conversationComparator,
-			UserFactory userFactory, EventService eventService, NotificationService notificationService) {
+			UserFactory userFactory, EventService eventService) {
 		this.conversationRepository = conversationRepository;
 		this.conversationFactory = conversationFactory;
 		this.conversationComparator = conversationComparator;
 		this.userFactory = userFactory;
 		this.eventService = eventService;
-		this.notificationService = notificationService;
 	}
 
 	@Override

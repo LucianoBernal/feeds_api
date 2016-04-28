@@ -1,6 +1,5 @@
 package com.etermax.conversations.dto;
 
-import com.etermax.conversations.model.ConversationImageMessage;
 import com.etermax.conversations.model.ConversationTextMessage;
 import com.etermax.conversations.model.MessageReceipt;
 import com.fasterxml.jackson.annotation.JsonProperty;

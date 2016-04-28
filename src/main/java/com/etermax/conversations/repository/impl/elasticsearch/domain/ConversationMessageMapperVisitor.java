@@ -1,6 +1,9 @@
 package com.etermax.conversations.repository.impl.elasticsearch.domain;
 
-import com.etermax.conversations.model.*;
+import com.etermax.conversations.model.Conversation;
+import com.etermax.conversations.model.ConversationMessage;
+import com.etermax.conversations.model.ConversationTextMessage;
+import com.etermax.conversations.model.Event;
 
 import java.util.HashSet;
 import java.util.Set;

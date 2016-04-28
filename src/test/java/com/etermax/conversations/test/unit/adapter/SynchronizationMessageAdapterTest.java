@@ -2,9 +2,12 @@ package com.etermax.conversations.test.unit.adapter;
 
 import com.etermax.conversations.adapter.SynchronizationAdapter;
 import com.etermax.conversations.adapter.impl.SynchronizationAdapterImpl;
-
-import com.etermax.conversations.error.*;
-import com.etermax.conversations.model.*;
+import com.etermax.conversations.error.ClientException;
+import com.etermax.conversations.error.GetConversationMessagesException;
+import com.etermax.conversations.error.InvalidConversationIdException;
+import com.etermax.conversations.error.UserNotInConversationException;
+import com.etermax.conversations.model.ConversationHistory;
+import com.etermax.conversations.model.Range;
 import com.etermax.conversations.retrocompatibility.migration.service.MigrationService;
 import com.etermax.conversations.service.SynchronizationService;
 import org.assertj.core.api.ThrowableAssert;
@@ -13,9 +16,7 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

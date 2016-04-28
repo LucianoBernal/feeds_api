@@ -6,8 +6,6 @@ import com.etermax.conversations.model.ReceivedType;
 import org.assertj.core.api.ThrowableAssert;
 import org.junit.Test;
 
-import java.util.Date;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

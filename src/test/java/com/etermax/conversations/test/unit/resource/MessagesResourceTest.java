@@ -1,13 +1,9 @@
 package com.etermax.conversations.test.unit.resource;
 
 import com.etermax.conversations.adapter.MessageAdapter;
-import com.etermax.conversations.dto.AddressedMessageCreationDTO;
-import com.etermax.conversations.dto.AddressedMessageDisplayDTO;
 import com.etermax.conversations.error.ClientException;
-import com.etermax.conversations.resource.MessagesResource;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

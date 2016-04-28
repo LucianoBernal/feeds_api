@@ -2,16 +2,10 @@ package com.etermax.conversations.test.unit.model;
 
 import com.etermax.conversations.error.InvalidMessageException;
 import com.etermax.conversations.error.InvalidUserException;
-import com.etermax.conversations.factory.ConversationMessageFactory;
-import com.etermax.conversations.factory.UserFactory;
-import com.etermax.conversations.model.ConversationMessage;
 import com.etermax.conversations.model.HasMore;
-import com.etermax.conversations.model.User;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

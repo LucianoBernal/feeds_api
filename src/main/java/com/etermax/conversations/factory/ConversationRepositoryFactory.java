@@ -1,6 +1,5 @@
 package com.etermax.conversations.factory;
 
-import com.codahale.metrics.health.HealthCheck;
 import com.etermax.conversations.application.healthcheck.factory.ConversationRepositoryHealthCheckFactory;
 import com.etermax.conversations.repository.ConversationRepository;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
